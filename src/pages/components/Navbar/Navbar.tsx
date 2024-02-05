@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import logo from "../../assets/Logo.png";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
+import { ShoppingCart } from "lucide-react";
 import LoginButton from "../LoginButton";
 import { MdMenu } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
@@ -10,7 +11,7 @@ export default function Navbar() {
   const [toggle, setToggle] = useState<Boolean>(false);
   return (
     <nav className="bg-white">
-      <div className="flex items-center font-medium justify-around">
+      <div className="flex items-center  justify-around">
         <div className="z-50 p-5 md:w-auto w-full flex justify-between">
           <Image
             src={logo}
@@ -19,6 +20,7 @@ export default function Navbar() {
             alt="logo"
             className=" md:cursor-pointer"
           />
+
           <div
             className="text-3xl md:hidden block"
             onClick={() => setToggle(!toggle)}
@@ -34,6 +36,14 @@ export default function Navbar() {
           </li>
           <Navlinks />
         </ul>
+        <div className="mr-4">
+          <div className="relative w-10 h-10 flex items-center justify-center ">
+            <ShoppingCart />
+            <div className="w-4 h-4 font-semibold rounded-full bg-green-500 absolute top-1 right-0 text-xs flex items-center justify-center text-white">
+              0
+            </div>
+          </div>
+        </div>
         <div className="md:block hidden">
           <LoginButton />
         </div>

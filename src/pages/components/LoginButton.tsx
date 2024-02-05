@@ -1,10 +1,14 @@
 import React from "react";
-
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 const LoginButton = () => {
   return (
-    <button className="bg-blue-500 text-white  px-6 py-2 rounded-full">
+    <Button
+      variant={"outline"}
+      className={cn("border-[#00A1FF] text-[#00A1FF]")}
+    >
       Нэвтрэх
-    </button>
+    </Button>
   );
 };
 

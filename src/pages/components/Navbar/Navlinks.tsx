@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import LoginButton from "../LoginButton";
 
 const Navlinks = () => {
   const [heading, setHeading] = useState("");
@@ -71,7 +72,7 @@ const Navlinks = () => {
           <div className={`${heading === link.name ? "md:hidden" : "hidden"}`}>
             {link.sublinks?.map((slink, k) => (
               <div key={k}>
-                <div>
+                <div className="">
                   <Link
                     className="py-4 pl-7 font-semibold md:pr-0 pr-5"
                     href={slink.link}

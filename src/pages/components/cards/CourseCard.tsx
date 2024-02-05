@@ -66,7 +66,10 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       </div>
       <hr className="my-4" />
       <div className="flex h-10 justify-between items-center">
-        <Button className="mainColor" onClick={() => handleAdd(course)}>
+        <Button
+          className="bg-[#FD3F00] rounded-md"
+          onClick={() => handleAdd(course)}
+        >
           {course.buttonText}
         </Button>
         <span>{course.price}</span>
