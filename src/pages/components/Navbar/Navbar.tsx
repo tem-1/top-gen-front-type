@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../../assets/Logo.png";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
@@ -7,8 +7,12 @@ import { ShoppingCart } from "lucide-react";
 import LoginButton from "../LoginButton";
 import { MdMenu } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
+import { Store } from "@/context/Store";
 export default function Navbar() {
   const [toggle, setToggle] = useState<Boolean>(false);
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+
   return (
     <nav className="bg-white">
       <div className="flex items-center  justify-around">
@@ -38,9 +42,11 @@ export default function Navbar() {
         </ul>
         <div className="mr-4">
           <div className="relative w-10 h-10 flex items-center justify-center ">
-            <ShoppingCart />
+            <Link href={"/cart"}>
+              <ShoppingCart />
+            </Link>
             <div className="w-4 h-4 font-semibold rounded-full bg-green-500 absolute top-1 right-0 text-xs flex items-center justify-center text-white">
-              0
+              {cart.cartItems.length}
             </div>
           </div>
         </div>

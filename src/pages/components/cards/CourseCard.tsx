@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Video, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { courseData } from "../../utils/data";
 import Link from "next/link";
+import { Store } from "@/context/Store";
 interface Course {
-  id: number;
+  _id: string;
   courseTitle: string;
   courseDescription: string;
   videoInfo: {
@@ -30,13 +31,23 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+  const { state, dispatch } = useContext(Store);
   const handleAdd = (course: any) => {
+    const existItem = state.cart.cartItems.find(
+      (x: Course) => x._id === course._id
+    );
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...course, quantity },
+    });
+
     console.log(course);
   };
   return (
     <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
       <div className="w-full">
-        <Link href={`coursedetail/${course.id}`}>
+        <Link href={`coursedetail/${course._id}`}>
           <AspectRatio ratio={16 / 9}>
             <Image
               src={course.imageSrc}
