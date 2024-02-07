@@ -1,6 +1,6 @@
 export const courseData = [
   {
-    _id: 1,
+    _id: "asdhauisbnduianui2_001",
     courseTitle: "Математик",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
     videoInfo: { icon: "Video", size: 20, text: "15 Хичээл" },
@@ -11,7 +11,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 2,
+    _id: "asdhauisbnduianui2_002",
 
     courseTitle: "Математик 1",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
@@ -23,7 +23,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 3,
+    _id: "asdhauisbnduianui2_003",
 
     courseTitle: "Математик 2",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
@@ -35,7 +35,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 4,
+    _id: "asdhauisbnduianui2_004",
 
     courseTitle: "Математик 3",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
@@ -47,7 +47,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 5,
+    _id: "asdhauisbnduianui2_005",
 
     courseTitle: "Математик 4",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
@@ -59,7 +59,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 6,
+    _id: "asdhauisbnduianui2_006",
 
     courseTitle: "Математик 5",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
@@ -71,7 +71,7 @@ export const courseData = [
       "https://static-cse.canva.com/blob/1145215/1.magebyRodionKutsaevviaUnsplash.jpg",
   },
   {
-    _id: 7,
+    _id: "asdhauisbnduianui2_007",
     courseTitle: "Математик 6",
     courseDescription: "11,12-р анги ЭЕШ хөтөлбөр",
     videoInfo: { icon: "Video", size: 20, text: "15 Хичээл" },

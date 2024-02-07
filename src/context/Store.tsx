@@ -1,26 +1,43 @@
 import React, { createContext, useReducer } from "react";
 
+interface Item {
+  item_id: string;
+  quantity: number;
+  // Add any other properties you need
+}
+
+interface State {
+  cart: {
+    cartItems: Item[];
+  };
+}
+
+interface Action {
+  type: string;
+  payload: Item;
+}
+
 export const Store = createContext<any>(null); // Adjust any as per your state shape
-const initialState = {
+
+const initialState: State = {
   cart: { cartItems: [] },
 };
-const reducer = (state: any, action: any) => {
+
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "CART_ADD_ITEM": {
       const newItem = action.payload;
-      const existItem = state.cart.cartItems.find(
-        (item: any) => item.item_id === newItem.item_id
+      const existItemIndex = state.cart.cartItems.findIndex(
+        (item) => item.item_id === newItem.item_id
       );
-      const cartItems = existItem
-        ? state.cart.cartItems.map((item: any) =>
-            item.item_id === existItem.item_id ? newItem : item
-          )
-        : [...state.cart.cartItems, newItem];
-      return { ...state, cart: { cartItems } };
+      return {
+        ...state,
+        cart: { cartItems: [...state.cart.cartItems, newItem] },
+      };
     }
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.cartItems.filter(
-        (item: any) => item.item_id !== action.payload.item_id
+        (item) => item.item_id !== action.payload.item_id
       );
       return { ...state, cart: { ...state.cart, cartItems } };
     }

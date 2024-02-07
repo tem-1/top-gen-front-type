@@ -12,7 +12,8 @@ export default function Navbar() {
   const [toggle, setToggle] = useState<Boolean>(false);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-
+  console.log(cart.cartItem, "cart Item ");
+  console.log(cart.cartItems.length, " cartItem iin urt");
   return (
     <nav className="bg-white">
       <div className="flex items-center  justify-around">

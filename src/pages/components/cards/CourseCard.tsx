@@ -1,4 +1,3 @@
-"use client";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { courseData } from "../../utils/data";
 import Link from "next/link";
 import { Store } from "@/context/Store";
+
 interface Course {
   _id: string;
   courseTitle: string;
@@ -32,7 +32,8 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const { state, dispatch } = useContext(Store);
-  const handleAdd = (course: any) => {
+
+  const handleAdd = (course: Course) => {
     const existItem = state.cart.cartItems.find(
       (x: Course) => x._id === course._id
     );
@@ -41,9 +42,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       type: "CART_ADD_ITEM",
       payload: { ...course, quantity },
     });
-
-    console.log(course);
   };
+
   return (
     <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
       <div className="w-full">
@@ -67,7 +67,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             {course.videoInfo.text}
           </span>
         </div>
-
         <div className="flex items-center gap-2">
           <Clock size={course.clockInfo.size} />
           <span className="text-sm text-[#6C757D]">
@@ -93,7 +92,7 @@ const CourseList: React.FC = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {courseData.map((course: any) => (
-        <CourseCard key={course.id} course={course} />
+        <CourseCard key={course._id} course={course} />
       ))}
     </div>
   );

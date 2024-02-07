@@ -26,7 +26,7 @@ const CartPage: React.FC = () => {
                   />
                   <div className="ml-4">
                     <h2 className="text-lg font-semibold">{item.name}</h2>
-                    <p className="text-gray-600"> Нэр : {item.courseTitle}</p>
+                    <p className="text-gray-600"> {item.courseTitle}</p>
                   </div>
                   <div>
                     <p>Үнэ: {item.price}</p>
