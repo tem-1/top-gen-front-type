@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['static-cse.canva.com'],
+    domains: ['static-cse.canva.com', "localhost"],
   },
 };
 
