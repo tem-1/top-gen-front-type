@@ -1,5 +1,6 @@
 import create, { SetState } from "zustand";
 import { Course } from "@/types/type";
+
 const url = "http://localhost:9090/api/v1/";
 
 interface User {
@@ -27,7 +28,7 @@ const useStore = create<State>((set: SetState<State>) => ({
         throw new Error("Failed to fetch users");
       }
       const data = await response.json();
-      set({ users: data.data });
+      set((state) => ({ ...state, users: data.data }));
       return { error: false };
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -41,7 +42,7 @@ const useStore = create<State>((set: SetState<State>) => ({
         throw new Error("Failed to fetch course data");
       }
       const data = await response.json();
-      set({ courseData: data.data });
+      set((state) => ({ ...state, courseData: data.data }));
       return { error: false };
     } catch (error) {
       console.error("Error fetching course data:", error);

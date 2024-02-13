@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { StoreProvider } from "@/context/Store";
+import { ShoppingCartProvider } from "@/context/ShoppingCartContext";
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <StoreProvider>
+    <ShoppingCartProvider>
       <Component {...pageProps} />;
-    </StoreProvider>
+    </ShoppingCartProvider>
   );
 }

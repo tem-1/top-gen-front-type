@@ -1,47 +1,28 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Video, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { courseData } from "../../utils/data";
 import Link from "next/link";
-import { Store } from "@/context/Store";
+import { useShoppingCart } from "@/context/ShoppingCartContext";
+import useStore from "@/states/state";
+import { Course } from "@/types/type"; // Assuming Course interface is defined in "type.ts" file
 
-interface Course {
-  _id: string;
-  courseTitle: string;
-  courseDescription: string;
-  videoInfo: {
-    icon: string;
-    size: number;
-    text: string;
-  };
-  clockInfo: {
-    icon: string;
-    size: number;
-    text: string;
-  };
-  buttonText: string;
-  price: string;
-  imageSrc: string;
-}
+export const imgUrl = "http://localhost:9090/uploads";
 
 interface CourseCardProps {
   course: Course;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
-  const { state, dispatch } = useContext(Store);
-
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
   const handleAdd = (course: Course) => {
-    const existItem = state.cart.cartItems.find(
-      (x: Course) => x._id === course._id
-    );
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    dispatch({
-      type: "CART_ADD_ITEM",
-      payload: { ...course, quantity },
-    });
+    increaseCartQuantity(course);
   };
 
   return (
@@ -50,7 +31,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <Link href={`coursedetail/${course._id}`}>
           <AspectRatio ratio={16 / 9}>
             <Image
-              src={course.imageSrc}
+              src={`${imgUrl}/${course.photo}`} // Use photo instead of imageSrc
               alt="Image"
               layout="fill"
               className="rounded-tl-2xl rounded-br-2xl object-cover"
@@ -58,20 +39,18 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </AspectRatio>
         </Link>
       </div>
-      <span className="uppercase">{course.courseTitle}</span>
-      <span className="text-xs my-2">{course.courseDescription}</span>
+      <span className="uppercase">{course.coursename}</span>{" "}
+      {/* Use coursename instead of courseTitle */}
+      <span className="text-xs my-2">{course.category}</span>{" "}
+      {/* Use category instead of courseDescription */}
       <div className="flex items-center justify-between pr-10 text-[#6C757D]">
         <div className="flex items-center gap-2">
-          <Video size={course.videoInfo.size} />
-          <span className="text-sm text-[#6C757D]">
-            {course.videoInfo.text}
-          </span>
+          <Video size={4} />
+          <span className="text-sm text-[#6C757D]">{"text"}</span>
         </div>
         <div className="flex items-center gap-2">
-          <Clock size={course.clockInfo.size} />
-          <span className="text-sm text-[#6C757D]">
-            {course.clockInfo.text}
-          </span>
+          <Clock size={2} />
+          <span className="text-sm text-[#6C757D]">{"text"}</span>
         </div>
       </div>
       <hr className="my-4" />
@@ -80,8 +59,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           className="bg-[#FD3F00] rounded-md"
           onClick={() => handleAdd(course)}
         >
-          {course.buttonText}
+          {"add text"}
         </Button>
+
         <span>{course.price}</span>
       </div>
     </div>
@@ -89,9 +69,14 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
 };
 
 const CourseList: React.FC = () => {
+  const { courseData, fetchCourseData } = useStore();
+  useEffect(() => {
+    fetchCourseData();
+  }, [fetchCourseData]);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {courseData.map((course: any) => (
+      {courseData.map((course: Course) => (
         <CourseCard key={course._id} course={course} />
       ))}
     </div>
