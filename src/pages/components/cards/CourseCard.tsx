@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Video, Clock } from "lucide-react";
@@ -69,14 +69,17 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
 };
 
 const CourseList: React.FC = () => {
-  const { courseData, fetchCourseData } = useStore();
+  const { course, getCourse } = useStore();
+  const courseData = course;
+  console.log("course data ", courseData);
+
   useEffect(() => {
-    fetchCourseData();
-  }, [fetchCourseData]);
+    getCourse();
+  }, []);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {courseData.map((course: Course) => (
+      {courseData.map((course: any) => (
         <CourseCard key={course._id} course={course} />
       ))}
     </div>
