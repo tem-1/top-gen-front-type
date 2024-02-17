@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -7,22 +7,33 @@ import {
 } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
+type CartItem = {
+  _id: string;
+  name: string;
+  courseTitle: string;
+  price: number;
+  photo: string;
+  quantity: number; // Add quantity property
+};
+
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
 
-type ShoppingCartContext = {
+type ShoppingCartContextType = {
   openCart: () => void;
   closeCart: () => void;
   getItemQuantity: (_id: string) => number;
-  increaseCartQuantity: (itemToAdd: any) => void;
+  increaseCartQuantity: (itemToAdd: CartItem) => void;
   decreaseCartQuantity: (_id: string) => void;
   removeFromCart: (_id: string) => void;
   cartQuantity: number;
-  cartItems: any;
+  cartItems: CartItem[];
 };
 
-const ShoppingCartContext = createContext({} as ShoppingCartContext);
+const ShoppingCartContext = createContext<ShoppingCartContextType>(
+  {} as ShoppingCartContextType
+);
 
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
@@ -30,16 +41,16 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useLocalStorage<any>(
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
     "shopping-cart",
-    [] // Initialize as an empty array
-  );
+    []
+  ); // Initialize as an empty array
   const [cartQuantity, setCartQuantity] = useState(0);
 
   useEffect(() => {
     // Calculate cart quantity whenever cartItems change
     const newCartQuantity = cartItems.reduce(
-      (quantity: any, item: any) => item.quantity + quantity,
+      (quantity: number, item: CartItem) => item.quantity + quantity,
       0
     );
     setCartQuantity(newCartQuantity);
@@ -49,20 +60,20 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const closeCart = () => setIsOpen(false);
 
   function getItemQuantity(_id: string) {
-    return cartItems.find((item: any) => item._id === _id)?.quantity || 0;
+    return cartItems.find((item: CartItem) => item._id === _id)?.quantity || 0;
   }
 
-  function increaseCartQuantity(itemToAdd: any) {
-    setCartItems((currItems: any) => {
+  function increaseCartQuantity(itemToAdd: CartItem) {
+    setCartItems((currItems: CartItem[]) => {
       const existingItem = currItems.find(
-        (item: any) => item._id === itemToAdd._id
+        (item: CartItem) => item._id === itemToAdd._id
       );
       if (!existingItem) {
-        return [...currItems, itemToAdd];
+        return [...currItems, { ...itemToAdd, quantity: 1 }];
       } else {
-        return currItems.map((item: any) => {
+        return currItems.map((item: CartItem) => {
           if (item._id === itemToAdd._id) {
-            return { ...item, quantity: item.quantity + itemToAdd.quantity };
+            return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
           }
@@ -72,40 +83,41 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function decreaseCartQuantity(_id: string) {
-    setCartItems((currItems: any) => {
-      if (currItems.find((item: any) => item._id === _id)?.quantity === 1) {
-        return currItems.filter((item: any) => item._id !== _id);
-      } else {
-        return currItems.map((item: any) => {
+    setCartItems((currItems: CartItem[]) => {
+      const existingItem = currItems.find((item: CartItem) => item._id === _id);
+      if (existingItem && existingItem.quantity > 1) {
+        return currItems.map((item: CartItem) => {
           if (item._id === _id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
             return item;
           }
         });
+      } else {
+        return currItems.filter((item: CartItem) => item._id !== _id);
       }
     });
   }
 
   function removeFromCart(_id: string) {
-    setCartItems((currItems: any) => {
-      return currItems.filter((item: any) => item._id !== _id);
+    setCartItems((currItems: CartItem[]) => {
+      return currItems.filter((item: CartItem) => item._id !== _id);
     });
   }
 
+  const value = {
+    openCart,
+    closeCart,
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+    cartQuantity,
+    cartItems,
+  };
+
   return (
-    <ShoppingCartContext.Provider
-      value={{
-        getItemQuantity,
-        increaseCartQuantity,
-        decreaseCartQuantity,
-        removeFromCart,
-        openCart,
-        closeCart,
-        cartItems,
-        cartQuantity,
-      }}
-    >
+    <ShoppingCartContext.Provider value={value}>
       {children}
     </ShoppingCartContext.Provider>
   );

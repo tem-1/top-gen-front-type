@@ -4,7 +4,7 @@ export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
   // Fetch initial value from local storage
   const getInitialValue = () => {
     if (typeof window !== "undefined") {
-      const jsonValue = localStorage.getItem(key);
+      const jsonValue: any = localStorage.getItem(key);
       if (jsonValue != null) return JSON.parse(jsonValue);
     }
     return typeof initialValue === "function"

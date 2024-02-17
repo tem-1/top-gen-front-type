@@ -11,13 +11,13 @@ import Cart from "./Cart";
 import BestDiv from "../Layout/BestDiv";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import profileIcon from "../../assets/profile.png";
+import notePad from "../../assets/note.png";
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch token from localStorage when component mounts
     const tokenFromStorage = localStorage.getItem("token");
     setToken(tokenFromStorage);
   }, []);
@@ -51,17 +51,34 @@ export default function Navbar() {
         <Cart />
         <div className="md:block hidden">
           {token ? (
-            <Link href={"/profile"}>profile</Link>
+            <div className="flex border p-2 border-gray-300 rounded-md">
+              <Link className="flex mx-2" href={"/profile"}>
+                <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
+                Профайл/
+              </Link>
+              <Link className="flex mx-1" href={"myCourses"}>
+                <Image
+                  src={notePad}
+                  alt="notepad"
+                  className="mr-2"
+                  width={20}
+                  height={10}
+                />{" "}
+                Миний сургалт{" "}
+              </Link>
+            </div>
           ) : (
-            <Link href={"/login"}>
-              <button
-                type="button"
-                className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                data-te-ripple-init=""
-              >
-                Нэвтрэх
-              </button>
-            </Link>
+            <div>
+              <Link href={"/login"}>
+                <button
+                  type="button"
+                  className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                  data-te-ripple-init=""
+                >
+                  Нэвтрэх
+                </button>
+              </Link>
+            </div>
           )}
         </div>
         {/* mobile menu */}
@@ -76,12 +93,36 @@ export default function Navbar() {
             </Link>
           </li>
           <Navlinks />
-          <Button
-            variant="outline"
-            className={cn("border-[#00A1FF] text-[#00A1FF]")}
-          >
-            Нэвтрэх
-          </Button>
+          {token ? (
+            <div className="flex ">
+              <Link className="flex  mx-2" href={"/profile"}>
+                <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
+                Профайл/
+              </Link>
+              <Link className="flex mx-1" href={"myCourses"}>
+                <Image
+                  src={notePad}
+                  alt="notepad"
+                  className="mr-2"
+                  width={20}
+                  height={10}
+                />{" "}
+                Миний сургалт{" "}
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link href={"/login"}>
+                <button
+                  type="button"
+                  className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                  data-te-ripple-init=""
+                >
+                  Нэвтрэх
+                </button>
+              </Link>
+            </div>
+          )}
         </ul>
       </div>
     </nav>

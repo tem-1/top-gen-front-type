@@ -6,16 +6,17 @@ import { imgUrl } from "../components/cards/CourseCard";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 
-interface CartItem {
+type CartItem = {
   _id: string;
   name: string;
   coursname: string;
   price: number;
   photo: string;
-  // Add other properties if needed
-}
-
-const Qr: React.FC<{ cartItems: CartItem[] }> = ({ cartItems }) => {
+  category: string;
+  quantity: number;
+  employee: any;
+};
+const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   const [imageData, setImageData] = useState<string>("");
 
   useEffect(() => {
@@ -30,8 +31,11 @@ const Qr: React.FC<{ cartItems: CartItem[] }> = ({ cartItems }) => {
         );
         console.log(" new invoice : ", invoiceRes.data.data._id);
         const invoice_id: any = invoiceRes.data.data._id;
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY1YjcyZmI3ODg3MTBkODY5YjA1OWEwMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA3OTYxMjExLCJleHAiOjE3MTA1NTMyMTF9.i8qHsYzvHomLBPR5HhmnifVQf7UOnMqynDxZOrlOKsY"; // Your access token here
+        // const token =
+        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY1YjcyZmI3ODg3MTBkODY5YjA1OWEwMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA3OTYxMjExLCJleHAiOjE3MTA1NTMyMTF9.i8qHsYzvHomLBPR5HhmnifVQf7UOnMqynDxZOrlOKsY"; // Your access token here
+
+        const token = localStorage.getItem("token");
+
         const response = await axios.post(
           `http://localhost:9090/api/v1/qpayRent/${invoice_id}`,
           {},
@@ -103,7 +107,7 @@ const CartPage: React.FC = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {cartItems.map((item: CartItem) => (
+                        {cartItems.map((item: any) => (
                           <tr key={item._id}>
                             <td className="py-4">
                               <div className="flex items-center">
