@@ -1,14 +1,14 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
-};
-
-type CartItem = {
-  [x: string]: number;
-  _id: any;
-  quantity: number;
 };
 
 type ShoppingCartContext = {
@@ -19,7 +19,7 @@ type ShoppingCartContext = {
   decreaseCartQuantity: (_id: string) => void;
   removeFromCart: (_id: string) => void;
   cartQuantity: number;
-  cartItems: CartItem[];
+  cartItems: any;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -30,24 +30,29 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+  const [cartItems, setCartItems] = useLocalStorage<any>(
     "shopping-cart",
     [] // Initialize as an empty array
   );
+  const [cartQuantity, setCartQuantity] = useState(0);
 
-  const cartQuantity = cartItems.reduce(
-    (quantity, item) => item.quantity + quantity,
-    0
-  );
+  useEffect(() => {
+    // Calculate cart quantity whenever cartItems change
+    const newCartQuantity = cartItems.reduce(
+      (quantity: any, item: any) => item.quantity + quantity,
+      0
+    );
+    setCartQuantity(newCartQuantity);
+  }, [cartItems]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
 
   function getItemQuantity(_id: string) {
-    return cartItems.find((item) => item._id === _id)?.quantity || 0;
+    return cartItems.find((item: any) => item._id === _id)?.quantity || 0;
   }
 
-  function increaseCartQuantity(itemToAdd: CartItem) {
+  function increaseCartQuantity(itemToAdd: any) {
     setCartItems((currItems: any) => {
       const existingItem = currItems.find(
         (item: any) => item._id === itemToAdd._id
@@ -83,8 +88,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function removeFromCart(_id: string) {
-    setCartItems((currItems) => {
-      return currItems.filter((item) => item._id !== _id);
+    setCartItems((currItems: any) => {
+      return currItems.filter((item: any) => item._id !== _id);
     });
   }
 

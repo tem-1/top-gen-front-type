@@ -1,12 +1,11 @@
-import { FunctionComponent } from "react";
+import React, { FunctionComponent, ReactNode } from "react";
 import Navbar from "../Navbar/Navbar";
-import { chdir } from "process";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+const Layout: FunctionComponent<LayoutProps> = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />

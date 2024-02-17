@@ -18,7 +18,6 @@ axiosInstance.interceptors.request.use(
     }
 
     // Set Content-Type to application/json
-    config.headers["Content-Type"] = "multipart/form-data";
 
     return config;
   },

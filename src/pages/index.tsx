@@ -9,9 +9,11 @@ import BestDiv from "./components/Layout/BestDiv";
 import NewsList from "./components/cards/NewsCard";
 import { Button } from "@/components/ui/button";
 import CommentCard from "./components/cards/CommentCardt";
+import useCourseStore from "@/states/state";
 const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
+  const { course, getCourse } = useCourseStore();
+
   return (
     <div className="w-full">
       <Navbar />
@@ -26,7 +28,7 @@ export default function Home() {
         <div className="mt-12">
           <SearchBar />
           <h1 className="my-12">Бүх сургалт</h1>
-          <CourseList />
+          <CourseList courses={course} />
         </div>
         <div className="flex flex-col items-center mt-20 ">
           <div className="rounded-xl bg-[#72C06C] text-white px-2 py-1 ">

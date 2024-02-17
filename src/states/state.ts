@@ -15,6 +15,12 @@ interface EmployeeType {
   status: boolean;
   createdAt: string;
 }
+interface Lesson {
+  createUser: string;
+  title: string;
+  course: string;
+  video: string;
+}
 
 interface SingleCourseState {
   coursname: string;
@@ -28,13 +34,14 @@ interface SingleCourseState {
 }
 
 interface CourseState {
-  course: any[];
+  course: SingleCourseState[];
   fetched: Boolean;
   getCourse: () => Promise<void>;
   createCourse: (data: SingleCourseState) => Promise<void>;
   deleteCourse: (id: string) => Promise<void>;
   getSingleCourse: (id: string) => Promise<SingleCourseState>;
   updateCourse: (id: string, data: SingleCourseState) => Promise<void>;
+  getCourseLessons: (id: string) => Promise<Lesson[]>;
 }
 
 const useCourseStore = create<CourseState>()(
@@ -42,6 +49,15 @@ const useCourseStore = create<CourseState>()(
     (set, get) => ({
       course: [],
       fetched: false,
+      getCourseLessons: async (id: string) => {
+        try {
+          const response = await axiosInstance.get(`/course/${id}`);
+          return response.data.data;
+        } catch (error) {
+          const { status, message } = handleApiError(error);
+          console.error(`Error (${status}): ${message}`);
+        }
+      },
       getCourse: async () => {
         const { fetched } = get();
         if (!fetched) {
@@ -51,7 +67,7 @@ const useCourseStore = create<CourseState>()(
             set({ course: data, fetched: true });
           } catch (error) {
             const { status, message } = handleApiError(error);
-            console.error(` Error (${status}): ${message} `);
+            console.error(`Error (${status}): ${message}`);
           }
         }
       },
@@ -72,7 +88,7 @@ const useCourseStore = create<CourseState>()(
           fetchAgain();
         } catch (error) {
           const { status, message } = handleApiError(error);
-          console.error(` Error (${status}): ${message}`);
+          console.error(`Error (${status}): ${message}`);
         }
       },
       getSingleCourse: async (id: string) => {
@@ -86,7 +102,7 @@ const useCourseStore = create<CourseState>()(
       },
       updateCourse: async (id: string, data: SingleCourseState) => {
         try {
-          const response = await axiosInstance.put(`/course/${id}, data`);
+          const response = await axiosInstance.put(`/course/${id}`, data);
           const fetchAgain = get().getCourse;
           fetchAgain();
         } catch (error) {
