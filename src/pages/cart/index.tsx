@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 interface CartItem {
   _id: string;
   name: string;
-  courseTitle: string;
+  coursname: string;
   price: number;
   photo: string;
   // Add other properties if needed
@@ -119,7 +119,7 @@ const CartPage: React.FC = () => {
                                 </span>
                               </div>
                             </td>
-                            <td className="py-4"> {item?.coursname} </td>
+                            <td className="py-4"> {item.coursname} </td>
                             <td className="py-4">{item.price}₮</td>
                             <td className="py-4">
                               <Button
