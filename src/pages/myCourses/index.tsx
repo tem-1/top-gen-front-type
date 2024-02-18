@@ -13,7 +13,7 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
   }, []);
 
   console.log("my course dotor bga", myCourses);
-  const courses = myCourses.map((el: any) => el.course);
+  const courses = myCourses.map((el: any) => el.courseId);
   console.log(" my courses", courses);
   return (
     <div>

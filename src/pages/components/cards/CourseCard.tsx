@@ -4,8 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useShoppingCart } from "@/context/ShoppingCartContext";
-
-// Assuming imgUrl is defined elsewhere in your code
+import { useRouter } from "next/router";
 export const imgUrl = "http://localhost:9090/uploads";
 
 interface Course {
@@ -17,7 +16,6 @@ interface Course {
   photo: string;
   category: {
     _id: string;
-    // Add any other properties you might need from the category
   };
   price: number;
 }
@@ -27,12 +25,9 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
-  const {
-    getItemQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeFromCart,
-  } = useShoppingCart();
+  const router = useRouter();
+  console.log("router pathname", router.pathname);
+  const { increaseCartQuantity } = useShoppingCart();
   const handleAdd = (course: any) => {
     increaseCartQuantity(course);
   };
@@ -54,12 +49,17 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       <span className="text-xs my-2"> Багш : {course.employee.name}</span>
       <hr className="my-4" />
       <div className="flex h-10 justify-between items-center">
-        <Button
-          onClick={() => handleAdd(course)}
-          className="bg-[#FD3F00] rounded-md"
-        >
-          {"сагслах"}
-        </Button>
+        {router.pathname === "/myCourses" ? (
+          <button className="p-2  mainColor"> Дэлгэрэнгүй </button>
+        ) : (
+          <Button
+            onClick={() => handleAdd(course)}
+            className="bg-[#FD3F00] rounded-md"
+          >
+            {"сагслах"}
+          </Button>
+        )}
+
         <span>{course.price}</span>
       </div>
     </div>
