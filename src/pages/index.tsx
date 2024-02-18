@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
@@ -10,9 +11,16 @@ import NewsList from "./components/cards/NewsCard";
 import { Button } from "@/components/ui/button";
 import CommentCard from "./components/cards/CommentCardt";
 import useCourseStore from "@/states/state";
+
+// Importing Inter font (make sure this is correct)
 const inter = Inter({ subsets: ["latin"] });
+
 export default function Home() {
-  const { course, getCourse } = useCourseStore();
+  const { course, fetched, getCourse } = useCourseStore();
+
+  useEffect(() => {
+    getCourse(); // Fetch the course data when the component mounts
+  }, [getCourse]);
 
   return (
     <div className="w-full">

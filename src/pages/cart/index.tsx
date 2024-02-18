@@ -5,7 +5,9 @@ import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { imgUrl } from "../components/cards/CourseCard";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-
+import axiosInstance from "@/hooks/axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 type CartItem = {
   _id: string;
   name: string;
@@ -18,56 +20,94 @@ type CartItem = {
 };
 const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   const [imageData, setImageData] = useState<string>("");
+  const [senderCode, setSenderCode] = useState<any>();
 
   useEffect(() => {
     const qpay = async () => {
       try {
-        const Course = cartItems.map((el) => ({ _id: el._id }));
-        const invoiceRes = await axios.post(
-          "http://localhost:9090/api/v1/invoice",
-          {
-            Course: Course,
-          }
-        );
-        console.log(" new invoice : ", invoiceRes.data.data._id);
-        const invoice_id: any = invoiceRes.data.data._id;
-        // const token =
-        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY1YjcyZmI3ODg3MTBkODY5YjA1OWEwMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA3OTYxMjExLCJleHAiOjE3MTA1NTMyMTF9.i8qHsYzvHomLBPR5HhmnifVQf7UOnMqynDxZOrlOKsY"; // Your access token here
+        if (cartItems && cartItems.length > 0) {
+          const c = cartItems.map((el) => ({ _id: el._id }));
+          console.log("course _id :", c);
+          const invoiceRes = await axios.post(
+            "http://localhost:9090/api/v1/invoice",
+            {
+              Course: c,
+            }
+          );
+          console.log(" new invoice : ", invoiceRes.data);
+          const invoice_id: any = invoiceRes.data.data._id;
 
-        const token = localStorage.getItem("token");
+          const token = localStorage.getItem("token");
 
-        const response = await axios.post(
-          `http://localhost:9090/api/v1/qpayRent/${invoice_id}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+          const response = await axios.post(
+            `http://localhost:9090/api/v1/qpayRent/${invoice_id}`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          if (
+            response.data &&
+            response.data.invoice &&
+            response.data.invoice.sender_invoice_id
+          ) {
+            setSenderCode(response.data.invoice.sender_invoice_id);
+            const dataUrl = `data:image/png;base64,${response.data.data.qr_image}`;
+            setImageData(dataUrl);
+          } else {
+            console.error("Invalid response structure:", response.data);
+            // Handle the case where the response structure is unexpected
           }
-        );
-        const dataUrl = `data:image/png;base64,${response.data.data.qr_image}`;
-        setImageData(dataUrl);
+        } else {
+          console.error("Cart items array is empty or null:", cartItems);
+          // Handle the case where cartItems is empty or null
+        }
       } catch (error: any) {
         console.error(
           "Error fetching data:",
           error.response ? error.response.data : error.message
         );
+        // Handle the error appropriately, e.g., display an error message
       }
     };
     qpay();
   }, [cartItems]);
 
+  const notifyError = (error: string) => toast.error(error); // Error toast function
+  const notifySuccess = (message: string) => toast.success(message); // Success toast function
+
+  console.log(" state dotor hadgalsan", senderCode);
+  const checkPayment = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `/qpayRent/callback/${senderCode}`
+      );
+      notifySuccess(response.data.message);
+    } catch (error: any) {
+      notifyError(error.response.data.message);
+    }
+  };
   return (
-    <div className="">
-      {imageData && (
-        <Image
-          width={300}
-          height={300}
-          src={imageData}
-          alt="Base64 Image"
-          className="h-200 w-200"
-        />
-      )}
+    <div>
+      <div className="">
+        {imageData && (
+          <Image
+            width={300}
+            height={300}
+            src={imageData}
+            alt="Base64 Image"
+            className="h-200 w-200"
+          />
+        )}
+        <button
+          onClick={checkPayment}
+          className="p-2 bg-blue-400 rounded-md my-4"
+        >
+          Төлбөр шалгах
+        </button>
+      </div>
     </div>
   );
 };
@@ -87,6 +127,7 @@ const CartPage: React.FC = () => {
 
   return (
     <Layout>
+      <ToastContainer />
       <div className="container mx-auto mt-8 px-4">
         {cartItems.length === 0 ? (
           <p>Таны сагс хоосон байна</p>
