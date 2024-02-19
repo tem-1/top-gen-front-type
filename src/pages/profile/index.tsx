@@ -26,19 +26,6 @@ const Profilepage: FunctionComponent<ProfilepageProps> = () => {
       </div>
       <div className="container mt-12">
         <div className=" border grid grid-rows-3 grid-flow-col gap-4">
-          <div className="row-span-3  border flex flex-col ">
-            <div className="w-full flex justify-center mt-12 ">
-              <Image
-                className="max-w-[200px] rounded-full"
-                width={240}
-                height={250}
-                src={`${imgUrl}/${userInfo?.photo}`}
-                alt="user profile"
-              />
-            </div>
-            <div>asdasiodhjasd</div>
-          </div>
-
           <div className="row-span-2 col-span-2 border">
             <div className=" w-full flex flex-col items-center p-8">
               <h1 className=" text-2xl font-medium mb-2">Хувийн мэдээлэл</h1>
@@ -46,6 +33,17 @@ const Profilepage: FunctionComponent<ProfilepageProps> = () => {
             </div>
             <form className="p-8">
               <div className="grid gap-6 mb-6 md:grid-cols-2">
+                <div className="row-span-3  border flex flex-col ">
+                  <div className="w-full flex justify-center mt-12 ">
+                    <Image
+                      className="max-w-[200px] rounded-full"
+                      width={240}
+                      height={250}
+                      src={`${imgUrl}/${userInfo?.photo}`}
+                      alt="user profile"
+                    />
+                  </div>
+                </div>
                 <div>
                   <label
                     htmlFor="first_name"
@@ -76,7 +74,6 @@ const Profilepage: FunctionComponent<ProfilepageProps> = () => {
                     required
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="phone"
@@ -93,7 +90,6 @@ const Profilepage: FunctionComponent<ProfilepageProps> = () => {
                     required
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="website"
@@ -109,51 +105,51 @@ const Profilepage: FunctionComponent<ProfilepageProps> = () => {
                     required
                   />
                 </div>
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Имэйл:
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder={userInfo?.email}
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Нууц үг:
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="•••••••••"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="confirm_password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Нууц үг давтах:
-                </label>
-                <input
-                  type="password"
-                  id="confirm_password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="•••••••••"
-                  required
-                />
+                <div>
+                  <label
+                    htmlFor="website"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Имэйл:
+                  </label>
+                  <input
+                    type="email"
+                    id="website"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder={userInfo?.email}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="website"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Нууц үг:
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="•••••••••••"
+                    required
+                  />
+                </div>{" "}
+                <div>
+                  <label
+                    htmlFor="website"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Нууц үг давтах:
+                  </label>
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="•••••••••••"
+                    required
+                  />
+                </div>
               </div>
 
               <button
