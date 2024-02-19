@@ -9,7 +9,7 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
   const { myCourses, myCourse } = myCourseStore();
 
   useEffect(() => {
-    myCourse(); // Fetch my courses when the component mounts
+    myCourse();
   }, []);
 
   console.log("my course dotor bga", myCourses);
