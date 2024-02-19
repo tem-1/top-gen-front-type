@@ -1,15 +1,33 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 import Navbar from "../Navbar/Navbar";
+import Loader from "../Loader";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }: LayoutProps) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating loading delay with setTimeout
+    const delay = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Adjust the delay time as needed
+
+    // Cleanup function to clear timeout
+    return () => clearTimeout(delay);
+  }, []);
+
   return (
     <div>
       <Navbar />
-      <div className="w-full">{children}</div>
+      {loading ? <Loader /> : <div className="w-full">{children}</div>}
     </div>
   );
 };

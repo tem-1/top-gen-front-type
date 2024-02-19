@@ -97,3 +97,24 @@ body {
   background: #FD3F00;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  background-image: url("/src//pages/assets//Logo.png");
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #AF0740;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

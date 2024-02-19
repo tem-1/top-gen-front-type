@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/topgenLogo.png";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
 import { ShoppingCart } from "lucide-react";
@@ -23,107 +23,111 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-white">
-      <div className="flex items-center justify-around">
-        <div className="w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
-          <Image
-            src={logo}
-            width={100}
-            height={100}
-            alt="logo"
-            className="md:cursor-pointer"
-          />
-          <div
-            className="text-3xl md:hidden block"
-            onClick={() => setToggle(!toggle)}
-          >
-            {toggle ? <IoMdClose /> : <MdMenu />}
+    <nav className="bg-white  flex justify-center">
+      <div className=" max-w-[1600px]">
+        <div className=" w-full flex items-center ">
+          <div className="  w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
+            <Link href={"/"}>
+              <Image
+                src={logo}
+                width={38}
+                height={38}
+                alt="logo"
+                className="md:cursor-pointer hidden sm:hidden md:block lg:block"
+              />
+            </Link>
+            <div
+              className="text-3xl md:hidden block"
+              onClick={() => setToggle(!toggle)}
+            >
+              {toggle ? <IoMdClose /> : <MdMenu />}
+            </div>
           </div>
+          <ul className="md:flex hidden items-center gap-8">
+            <li>
+              <Link href="/" className="py-7 px-3 inline-block">
+                Нүүр
+              </Link>
+            </li>
+            <Navlinks />
+          </ul>
+          <Cart />
+          <div className="md:block hidden">
+            {token ? (
+              <div className="flex border p-2 border-gray-300 rounded-md">
+                <Link className="flex mx-2" href={"/profile"}>
+                  <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
+                  Профайл/
+                </Link>
+                <Link className="flex mx-1" href={"myCourses"}>
+                  <Image
+                    src={notePad}
+                    alt="notepad"
+                    className="mr-2"
+                    width={20}
+                    height={10}
+                  />{" "}
+                  Миний сургалт{" "}
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link href={"/login"}>
+                  <button
+                    type="button"
+                    className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                    data-te-ripple-init=""
+                  >
+                    Нэвтрэх
+                  </button>
+                </Link>
+              </div>
+            )}
+          </div>
+          {/* mobile menu */}
+          <ul
+            className={`md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
+              toggle ? "left-0" : "-left-[100%]"
+            }`}
+          >
+            <li>
+              <Link href="/" className="py-7 px-3  inline-block">
+                Home
+              </Link>
+            </li>
+            <Navlinks />
+            {token ? (
+              <div className="flex ">
+                <Link className="flex  mx-2" href={"/profile"}>
+                  <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
+                  Профайл/
+                </Link>
+                <Link className="flex mx-1" href={"myCourses"}>
+                  <Image
+                    src={notePad}
+                    alt="notepad"
+                    className="mr-2"
+                    width={20}
+                    height={10}
+                  />{" "}
+                  Миний сургалт{" "}
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link href={"/login"}>
+                  <button
+                    type="button"
+                    className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                    data-te-ripple-init=""
+                  >
+                    Нэвтрэх
+                  </button>
+                </Link>
+              </div>
+            )}
+          </ul>
         </div>
-        <ul className="md:flex hidden items-center gap-8">
-          <li>
-            <Link href="/" className="py-7 px-3 inline-block">
-              Нүүр
-            </Link>
-          </li>
-          <Navlinks />
-        </ul>
-        <Cart />
-        <div className="md:block hidden">
-          {token ? (
-            <div className="flex border p-2 border-gray-300 rounded-md">
-              <Link className="flex mx-2" href={"/profile"}>
-                <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
-                Профайл/
-              </Link>
-              <Link className="flex mx-1" href={"myCourses"}>
-                <Image
-                  src={notePad}
-                  alt="notepad"
-                  className="mr-2"
-                  width={20}
-                  height={10}
-                />{" "}
-                Миний сургалт{" "}
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <Link href={"/login"}>
-                <button
-                  type="button"
-                  className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                  data-te-ripple-init=""
-                >
-                  Нэвтрэх
-                </button>
-              </Link>
-            </div>
-          )}
-        </div>
-        {/* mobile menu */}
-        <ul
-          className={`md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
-            toggle ? "left-0" : "-left-[100%]"
-          }`}
-        >
-          <li>
-            <Link href="/" className="py-7 px-3  inline-block">
-              Home
-            </Link>
-          </li>
-          <Navlinks />
-          {token ? (
-            <div className="flex ">
-              <Link className="flex  mx-2" href={"/profile"}>
-                <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
-                Профайл/
-              </Link>
-              <Link className="flex mx-1" href={"myCourses"}>
-                <Image
-                  src={notePad}
-                  alt="notepad"
-                  className="mr-2"
-                  width={20}
-                  height={10}
-                />{" "}
-                Миний сургалт{" "}
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <Link href={"/login"}>
-                <button
-                  type="button"
-                  className="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                  data-te-ripple-init=""
-                >
-                  Нэвтрэх
-                </button>
-              </Link>
-            </div>
-          )}
-        </ul>
       </div>
     </nav>
   );
