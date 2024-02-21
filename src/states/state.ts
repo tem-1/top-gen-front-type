@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { handleApiError } from "@/error/error";
-import { persist } from "zustand/middleware";
 import axiosInstance from "@/hooks/axios";
+import { handleApiError } from "@/error/error";
 
 interface EmployeeType {
   _id: string;
@@ -15,6 +14,7 @@ interface EmployeeType {
   status: boolean;
   createdAt: string;
 }
+
 interface Lesson {
   createUser: string;
   title: string;
@@ -23,7 +23,7 @@ interface Lesson {
 }
 
 interface SingleCourseState {
-  coursname: string;
+  courseName: string;
   file?: any;
   _id: string;
   employee: EmployeeType;
@@ -35,7 +35,7 @@ interface SingleCourseState {
 
 interface CourseState {
   course: SingleCourseState[];
-  fetched: Boolean;
+  fetched: boolean;
   getCourse: () => Promise<void>;
   createCourse: (data: SingleCourseState) => Promise<void>;
   deleteCourse: (id: string) => Promise<void>;
@@ -44,77 +44,70 @@ interface CourseState {
   getCourseLessons: (id: string) => Promise<Lesson[]>;
 }
 
-const useCourseStore = create<CourseState>()(
-  persist(
-    (set, get) => ({
-      course: [],
-      fetched: false,
-      getCourseLessons: async (id: string) => {
-        try {
-          const response = await axiosInstance.get(`/course/${id}`);
-          return response.data.data;
-        } catch (error) {
-          const { status, message } = handleApiError(error);
-          console.error(`Error (${status}): ${message}`);
-        }
-      },
-      getCourse: async () => {
-        const { fetched } = get();
-        if (!fetched) {
-          try {
-            const response = await axiosInstance.get("/course");
-            const { data } = response.data;
-            set({ course: data, fetched: true });
-          } catch (error) {
-            const { status, message } = handleApiError(error);
-            console.error(`Error (${status}): ${message}`);
-          }
-        }
-      },
-      createCourse: async (data: SingleCourseState) => {
-        try {
-          const response = await axiosInstance.post("/course", data);
-          const fetchAgain = get().getCourse;
-          fetchAgain();
-        } catch (error) {
-          const { status, message } = handleApiError(error);
-          console.error(`Error (${status}): ${message}`);
-        }
-      },
-      deleteCourse: async (id: string) => {
-        try {
-          const response = await axiosInstance.delete(`/course/${id}`);
-          const fetchAgain = get().getCourse;
-          fetchAgain();
-        } catch (error) {
-          const { status, message } = handleApiError(error);
-          console.error(`Error (${status}): ${message}`);
-        }
-      },
-      getSingleCourse: async (id: string) => {
-        try {
-          const response = await axiosInstance.get(`/course/${id}`);
-          return response.data.data;
-        } catch (error) {
-          const { status, message } = handleApiError(error);
-          console.error(`Error (${status}): ${message}`);
-        }
-      },
-      updateCourse: async (id: string, data: SingleCourseState) => {
-        try {
-          const response = await axiosInstance.put(`/course/${id}`, data);
-          const fetchAgain = get().getCourse;
-          fetchAgain();
-        } catch (error) {
-          const { status, message } = handleApiError(error);
-          console.error(`Error (${status}): ${message}`);
-        }
-      },
-    }),
-    {
-      name: "course",
+const useCourseStore = create<CourseState>((set, get) => ({
+  course: [],
+  fetched: false,
+  getCourseLessons: async (id: string) => {
+    try {
+      const response = await axiosInstance.get(`/course/${id}`);
+      return response.data.data;
+    } catch (error) {
+      handleApiError(error);
+      throw error;
     }
-  )
-);
+  },
+  getCourse: async () => {
+    const { fetched } = get();
+    if (!fetched) {
+      try {
+        const currentCategory = get().course;
+        if (currentCategory.length === 0) {
+          const response = await axiosInstance.get("/course");
+          const { data } = response.data;
+          set({ course: data, fetched: true });
+        }
+      } catch (error) {
+        handleApiError(error);
+        throw error;
+      }
+    }
+  },
+  createCourse: async (data: SingleCourseState) => {
+    try {
+      await axiosInstance.post("/course", data);
+      set((state) => ({ ...state, fetched: false }));
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  },
+  deleteCourse: async (id: string) => {
+    try {
+      await axiosInstance.delete(`/course/${id}`);
+      set((state) => ({ ...state, fetched: false }));
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  },
+  getSingleCourse: async (id: string) => {
+    try {
+      const response = await axiosInstance.get(`/course/${id}`);
+      return response.data.data;
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  },
+  updateCourse: async (id: string, data: SingleCourseState) => {
+    try {
+      await axiosInstance.put(`/course/${id}`, data);
+      set((state) => ({ ...state, fetched: false }));
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  },
+}));
 
 export default useCourseStore;

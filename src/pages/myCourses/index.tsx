@@ -10,11 +10,11 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
 
   useEffect(() => {
     myCourse();
-  }, []);
+  }, [myCourses]);
 
   console.log("my course dotor bga", myCourses);
   const courses = myCourses.map((el: any) => el.courseId);
-  console.log(" my courses", courses);
+  console.log(" my courses");
   return (
     <div>
       <Layout>
@@ -23,6 +23,7 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
             Миний сургалт
           </h1>
         </div>
+
         <div className=" container">
           <h1 className="text-3xl my-8 font-normal">Миний сургалтууд</h1>
           <p className="underline decoration-4 decoration-linear-gradient(94.05deg, #FAE202 0%, #FD3F00 47.5%, #AF0740 100%); underline-offset-8 my-12 text-xl">
@@ -30,7 +31,6 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
           </p>
           <CourseList courses={courses} />{" "}
         </div>
-        {/* Pass courses instead of myCourse */}
       </Layout>
     </div>
   );

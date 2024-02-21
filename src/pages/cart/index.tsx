@@ -58,18 +58,15 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
             setImageData(dataUrl);
           } else {
             console.error("Invalid response structure:", response.data);
-            // Handle the case where the response structure is unexpected
           }
         } else {
           console.error("Cart items array is empty or null:", cartItems);
-          // Handle the case where cartItems is empty or null
         }
       } catch (error: any) {
         console.error(
           "Error fetching data:",
           error.response ? error.response.data : error.message
         );
-        // Handle the error appropriately, e.g., display an error message
       }
     };
     qpay();
@@ -116,7 +113,6 @@ const CartPage: React.FC = () => {
   const { cartItems, removeFromCart } = useShoppingCart();
   const [totalPrice, setTotalPrice] = useState(0);
   const [showQr, setShowQr] = useState(false);
-
   useEffect(() => {
     const calculatedTotalPrice = cartItems.reduce(
       (total: any, item: any) => total + item.price,

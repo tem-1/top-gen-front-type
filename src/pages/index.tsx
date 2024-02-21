@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import bgCover from "./assets/Section.png";
 import SearchBar from "./components/Searchbar/SearchBar";
-import Layout from "./components/Layout/Layout";
 import CourseList from "./components/cards/CourseCard";
 import BestDiv from "./components/Layout/BestDiv";
 import NewsList from "./components/cards/NewsCard";
@@ -21,7 +20,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     getCourse(); // Fetch the course data when the component mounts
-  }, [getCourse]);
+  }, [course]);
   useEffect(() => {
     // Simulating loading delay with setTimeout
     const delay = setTimeout(() => {

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const imgUrl = "http://localhost:9090/uploads";
 
 interface Course {
@@ -25,11 +27,14 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+  const notifySuccess = (message: any) =>
+    toast.success("Сагсанд нэмэглээ " + message);
   const router = useRouter();
   console.log("router pathname", router.pathname);
   const { increaseCartQuantity } = useShoppingCart();
   const handleAdd = (course: any) => {
     increaseCartQuantity(course);
+    notifySuccess(course.coursname);
   };
   return (
     <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
@@ -46,7 +51,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         </Link>
       </div>
       <span className="uppercase">{course.coursname}</span>
-      <span className="text-xs my-2"> Багш : {course.employee.name}</span>
+      <span className="text-xs my-2"> Багш : {course?.employee?.name}</span>
       <hr className="my-4" />
       <div className="flex h-10 justify-between items-center">
         {router.pathname === "/myCourses" ? (
@@ -72,11 +77,14 @@ interface CourseListProps {
 
 const CourseList: React.FC<CourseListProps> = ({ courses }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {courses.map((course: any) => (
-        <CourseCard key={course._id} course={course} />
-      ))}
-    </div>
+    <>
+      <ToastContainer />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {courses.map((course: any) => (
+          <CourseCard key={course._id} course={course} />
+        ))}
+      </div>
+    </>
   );
 };
 
