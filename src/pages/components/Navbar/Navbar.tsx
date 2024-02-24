@@ -86,7 +86,7 @@ export default function Navbar() {
           </div>
           {/* mobile menu */}
           <ul
-            className={`md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
+            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
               toggle ? "left-0" : "-left-[100%]"
             }`}
           >

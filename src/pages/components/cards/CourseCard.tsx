@@ -7,7 +7,7 @@ import { useShoppingCart } from "@/context/ShoppingCartContext";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export const imgUrl = "http://localhost:9090/uploads";
+import { imgUrl } from "@/hooks/img";
 
 interface Course {
   _id: string;
@@ -55,7 +55,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       <hr className="my-4" />
       <div className="flex h-10 justify-between items-center">
         {router.pathname === "/myCourses" ? (
-          <button className="p-2  mainColor"> Дэлгэрэнгүй </button>
+          <div className="">
+            <button className="p-3 border   hover:bg-orange-500  hover:transition-opacity  rounded-2xl ">
+              Дэлгэрэнгүй{" "}
+            </button>
+          </div>
         ) : (
           <Button
             onClick={() => handleAdd(course)}

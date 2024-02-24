@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Image from "next/image";
 import { useShoppingCart } from "@/context/ShoppingCartContext";
-import { imgUrl } from "../components/cards/CourseCard";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { imgUrl } from "@/hooks/img";
 type CartItem = {
   _id: string;
   name: string;
@@ -29,7 +29,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
           const c = cartItems.map((el) => ({ _id: el._id }));
           console.log("course _id :", c);
           const invoiceRes = await axios.post(
-            "http://localhost:9090/api/v1/invoice",
+            "https://topgenius.tanuweb.cloud/api/v1/invoice",
             {
               Course: c,
             }
@@ -40,7 +40,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
           const token = localStorage.getItem("token");
 
           const response = await axios.post(
-            `http://localhost:9090/api/v1/qpayRent/${invoice_id}`,
+            `https://topgenius.tanuweb.cloud/api/v1/qpayRent/${invoice_id}`,
             {},
             {
               headers: {

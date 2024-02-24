@@ -1,33 +1,34 @@
-import { FunctionComponent } from "react";
-import detailBg from "@/pages/assets/detailBg.png";
+import { FunctionComponent, useEffect, useState } from "react";
 import Image from "next/image";
 import Layout from "../components/Layout/Layout";
 import bgCover from "@/pages/assets/Section.png";
+import { useCourseContext } from "@/states/state";
+import { useRouter } from "next/router";
+import { CldVideoPlayer } from "next-cloudinary";
+import "next-cloudinary/dist/cld-video-player.css";
+import { imgUrl } from "@/hooks/img";
+
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const data = [
-    {
-      name: "Монгол хэл  яазгуурын ойлголт",
-      time: "00:23:12",
-    },
-    {
-      name: "Монгол хэлний яазгуурын ойлголт ",
-      time: "00:23:12",
-    },
-    {
-      name: "Монгол хэлний яазгуурын ойлголт",
-      time: "00:23:12",
-    },
-    {
-      name: "Монгол хэлний яазгуурын ойлголт",
-      time: "00:23:12",
-    },
-    {
-      name: "Монгол хэлний яазгуурын ойлголт",
-      time: "00:23:12",
-    },
-  ];
+  const { getLesson, lesson, getSingleCourse } = useCourseContext();
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (id) {
+      getSingleCourse(id);
+      getLesson(id);
+    }
+  }, [id]);
+
+  const [videoSrc, setVideoSrc] = useState<string>("");
+
+  const handleChangeVideo = (video: string) => {
+    setVideoSrc(video);
+    console.log(video);
+  };
+
   return (
     <Layout>
       <Image
@@ -38,35 +39,30 @@ const Detail: FunctionComponent<DetailProps> = () => {
         alt="bg"
       />
       <div className="container border h-auto my-12 flex gap-10">
-        <div>
-          {" "}
-          <Image src={detailBg} alt="" width={763} height={542} />
-          <div className="h-[300px]"></div>
-        </div>
-
+        <CldVideoPlayer
+          id={`video-player-${videoSrc}`}
+          width="800"
+          height="800"
+          src={`${imgUrl}/${videoSrc}`}
+        />
         <div className="border p-4 rounded-lg ">
-          <h1 className=" flex w-full justify-start items-center pt-2 text-xl">
-            {" "}
+          <h1 className="flex w-full justify-start items-center pt-2 text-xl">
             Сургалтын хөтөлбөр
           </h1>
-          {data.map((el, i) => (
-            <div
-              className="borderColor
-              p-4 rounded-xl  my-4 fontMain font-bold"
-              key={i}
-            >
-              <div className="flex items-center h-full">
-                <div className="mx-2"> {i}.</div>
-                <div>{el.name}</div>
-                <div className="ml-12 flex justify-end ">
-                  <button className="borderColor text-black p-2 rounded-lg">
-                    {" "}
-                    тест{" "}
-                  </button>
+          <div className="borderColor p-4 rounded-xl my-4 fontMain ">
+            {lesson?.map((index: any, i: any) => (
+              <div className="flex items-center h-full" key={index._id}>
+                <div className="mx-2"> №:{i + 1} </div>
+                <div
+                  onClick={() => handleChangeVideo(index.video)}
+                  className="border pl-2 p-2 w-full my-1 border-red-900 rounded-xl cursor-pointer"
+                >
+                  {index.title}
                 </div>
+                <div className="ml-12 flex justify-end"></div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </Layout>

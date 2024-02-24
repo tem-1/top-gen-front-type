@@ -9,27 +9,19 @@ import BestDiv from "./components/Layout/BestDiv";
 import NewsList from "./components/cards/NewsCard";
 import { Button } from "@/components/ui/button";
 import CommentCard from "./components/cards/CommentCardt";
-import useCourseStore from "@/states/state";
 import Loader from "./components/Loader";
+import { useCourseContext } from "@/states/state";
 
-// Importing Inter font (make sure this is correct)
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { course, fetched, getCourse } = useCourseStore();
+  const { course } = useCourseContext();
+  console.log("course", course);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    getCourse(); // Fetch the course data when the component mounts
-  }, [course]);
-  useEffect(() => {
-    // Simulating loading delay with setTimeout
-    const delay = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Adjust the delay time as needed
 
-    // Cleanup function to clear timeout
-    return () => clearTimeout(delay);
-  }, []);
+  const delay = setTimeout(() => {
+    setLoading(false);
+  }, 1000);
   return (
     <>
       {loading ? (
@@ -45,13 +37,13 @@ export default function Home() {
             alt="bg"
           />
           <BestDiv>
-            <div className="mt-12">
+            <div className="mt-12 z-10">
               <SearchBar />
               <h1 className="my-12">Бүх сургалт</h1>
               <CourseList courses={course} />
             </div>
             <div className="flex flex-col items-center mt-20 ">
-              <div className="rounded-xl bg-[#72C06C] text-white px-2 py-1 ">
+              <div className="rounded-xl bg-[#72C06C] text-white px-6 py-1 ">
                 Мэдээ, блог
               </div>
               <span className="text-[44px] text-[#38B6FF] font-semibold mb-8">

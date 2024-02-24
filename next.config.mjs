@@ -1,8 +1,7 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['static-cse.canva.com', "localhost"],
+    domains: ['static-cse.canva.com', "localhost", "topgenius.tanuweb.cloud"],
   },
 };
 

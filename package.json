@@ -18,6 +18,7 @@
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.321.0",
     "next": "14.1.0",
+    "next-cloudinary": "^5.20.0",
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
@@ -38,7 +39,10 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "react-html5video": "^2.5.1",
+    "react-player": "^2.14.1",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "video-react": "^0.16.0"
   }
 }

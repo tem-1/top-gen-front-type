@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Image from "next/image";
-import { imgUrl } from "../components/cards/CourseCard";
 import { useRouter } from "next/router";
+import { imgUrl } from "@/hooks/img";
 interface ProfilepageProps {}
 
 const Profilepage: FunctionComponent<ProfilepageProps> = () => {
