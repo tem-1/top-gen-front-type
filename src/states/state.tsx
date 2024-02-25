@@ -149,8 +149,8 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const getAllUsers = async () => {
     try {
       const response = await axiosInstance.get("/user");
-      setFetched(true);
       setAllUser(response.data.data);
+      setFetched(true);
     } catch (error) {
       handleApiError(error);
       throw error;

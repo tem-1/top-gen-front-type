@@ -5,11 +5,7 @@ import Image from "next/image";
 import { useCourseContext } from "@/states/state";
 
 const About = () => {
-  const { allUser, getAllUsers } = useCourseContext();
-
-  useEffect(() => {
-    getAllUsers(); // Fetch all users when component mounts
-  }, []);
+  const { allUser } = useCourseContext();
 
   console.log("buh bagsh nar", allUser);
 

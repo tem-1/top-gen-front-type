@@ -23,7 +23,7 @@ interface Course {
 }
 
 interface CourseCardProps {
-  course: Course;
+  course: any;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
@@ -87,7 +87,7 @@ const CourseList: React.FC<CourseListProps> = ({ courses }) => {
     <>
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {courses.map((course: any) => (
+        {courses?.map((course: any) => (
           <CourseCard key={course._id} course={course} />
         ))}
       </div>
