@@ -28,6 +28,10 @@ const Detail: FunctionComponent<DetailProps> = () => {
     window.location.reload();
   };
 
+  const [lessonDurations, setLessonDurations] = useState<{
+    [key: string]: number;
+  }>({});
+
   useEffect(() => {
     if (singleCourse && singleCourse.lessons) {
       const fetchDurations = async () => {
