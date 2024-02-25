@@ -11,14 +11,13 @@ import { Button } from "@/components/ui/button";
 import CommentCard from "./components/cards/CommentCardt";
 import Loader from "./components/Loader";
 import { useCourseContext } from "@/states/state";
-
+import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { course } = useCourseContext();
   console.log("course", course);
   const [loading, setLoading] = useState(true);
-
   const delay = setTimeout(() => {
     setLoading(false);
   }, 1000);
@@ -74,6 +73,7 @@ export default function Home() {
               </div>
             </div>
           </BestDiv>
+          <Footer />
         </div>
       )}
     </>

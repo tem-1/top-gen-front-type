@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader";
+import Footer from "../Footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -28,6 +29,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }: LayoutProps) => {
     <div>
       <Navbar />
       {loading ? <Loader /> : <div className="w-full">{children}</div>}
+      <Footer />
     </div>
   );
 };

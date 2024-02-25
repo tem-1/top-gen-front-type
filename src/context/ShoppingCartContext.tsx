@@ -44,11 +44,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
     "shopping-cart",
     []
-  ); // Initialize as an empty array
+  );
   const [cartQuantity, setCartQuantity] = useState(0);
 
   useEffect(() => {
-    // Calculate cart quantity whenever cartItems change
     const newCartQuantity = cartItems.reduce(
       (quantity: number, item: CartItem) => item.quantity + quantity,
       0

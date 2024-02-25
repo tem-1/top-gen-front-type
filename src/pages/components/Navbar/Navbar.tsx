@@ -24,17 +24,20 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white  flex justify-center">
-      <div className=" max-w-[1600px]">
+      <div className=" max-w-full">
         <div className=" w-full flex items-center ">
-          <div className="  w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
-            <Link href={"/"}>
+          <div className="w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
+            <Link className="flex" href={"/"}>
               <Image
                 src={logo}
-                width={38}
+                width={50}
                 height={38}
                 alt="logo"
-                className="md:cursor-pointer hidden sm:hidden md:block lg:block"
+                className="md:cursor-pointer hidden sm:hidden md:block lg:block mr-4"
               />
+              <div className=" text-sm flex  h-full items-center hidden  md:block lg:block xl:block">
+                TOP Genius <br /> Боловсролын төв
+              </div>
             </Link>
             <div
               className="text-3xl md:hidden block"
@@ -92,7 +95,7 @@ export default function Navbar() {
           >
             <li>
               <Link href="/" className="py-7 px-3  inline-block">
-                Home
+                Нүүр
               </Link>
             </li>
             <Navlinks />
@@ -102,15 +105,15 @@ export default function Navbar() {
                   <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
                   Профайл/
                 </Link>
-                <Link className="flex mx-1" href={"myCourses"}>
+                <Link className="flex mx-1" href={"/myCourses"}>
                   <Image
                     src={notePad}
                     alt="notepad"
                     className="mr-2"
                     width={20}
                     height={10}
-                  />{" "}
-                  Миний сургалт{" "}
+                  />
+                  Миний сургалт
                 </Link>
               </div>
             ) : (

@@ -1,17 +1,18 @@
-import { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import myCourseStore from "@/states/myLessonState";
 import CourseList from "../components/cards/CourseCard";
-interface MyCoursesProps {}
-const MyCourses: FunctionComponent<MyCoursesProps> = () => {
-  const { myCourses, myCourse } = myCourseStore();
-  useEffect(() => {
-    myCourse();
-  }, [myCourses]);
+import { useCourseContext } from "@/states/state";
 
-  console.log("my course dotor bga", myCourses);
-  const courses = myCourses.map((el: any) => el.courseId);
-  console.log(" my courses");
+interface MyCoursesProps {}
+
+const MyCourses: FunctionComponent<MyCoursesProps> = () => {
+  const { myLesson, getMyLesson } = useCourseContext();
+  useEffect(() => {
+    getMyLesson();
+  }, []);
+
+  const courses = myLesson.map((el: any) => el.courseId);
+
   return (
     <div>
       <Layout>
@@ -23,9 +24,9 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
         <div className=" container">
           <h1 className="text-3xl my-8 font-normal">Миний сургалтууд</h1>
           <p className="underline decoration-4 decoration-linear-gradient(94.05deg, #FAE202 0%, #FD3F00 47.5%, #AF0740 100%); underline-offset-8 my-12 text-xl">
-            Сургалтууд{" "}
+            Сургалтууд
           </p>
-          <CourseList courses={courses} />{" "}
+          <CourseList courses={courses} />
         </div>
       </Layout>
     </div>

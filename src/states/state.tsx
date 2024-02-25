@@ -45,11 +45,14 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [course, setCourse] = useState<SingleCourseState[]>([]);
   const [singleCourse, setSingleCourse] = useState<SingleCourseState[]>([]);
   const [fetched, setFetched] = useState<boolean>(false);
-  const [lesson, setLesson] = useState<Lesson[]>([]); // Define initial state as an empty array
+  const [lesson, setLesson] = useState<Lesson[]>([]);
+  const [myLesson, setMyLesson] = useState([]);
+  const [allUser, setAllUser] = useState([]);
 
   useEffect(() => {
     if (!fetched) {
       getCourse();
+      getAllUsers();
     }
   }, [fetched]);
 
@@ -95,7 +98,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     }
   };
 
-  const getSingleCourse = async (id: string) => {
+  const getSingleCourse = async (id: any) => {
     try {
       const response = await axiosInstance.get(`/course/${id}`);
       setSingleCourse(response.data.data);
@@ -117,6 +120,17 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     }
   };
 
+  const getMyLesson = async () => {
+    try {
+      const res = await axiosInstance.get("/myLesson");
+      setMyLesson(res.data.data);
+      setFetched(true);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+
   const updateCourse = async (id: string, data: SingleCourseState) => {
     try {
       await axiosInstance.put(`/course/${id}`, data);
@@ -127,10 +141,25 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     }
   };
 
+  const getAllUsers = async () => {
+    try {
+      const response = await axiosInstance.get("/user");
+      setFetched(true);
+      setAllUser(response.data.data);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+
   const contextValue = {
     course,
     lesson,
+    getAllUsers,
+    allUser,
     getLesson,
+    getMyLesson,
+    myLesson,
     singleCourse,
     fetched,
     getCourse,
@@ -148,7 +177,6 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook to consume the context
 export const useCourseContext = () => {
   const context = useContext(CourseContext);
   if (!context) {

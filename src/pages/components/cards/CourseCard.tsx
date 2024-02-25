@@ -56,8 +56,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       <div className="flex h-10 justify-between items-center">
         {router.pathname === "/myCourses" ? (
           <div className="">
-            <button className="p-3 border   hover:bg-orange-500  hover:transition-opacity  rounded-2xl ">
-              Дэлгэрэнгүй{" "}
+            <button className="p-3 border border-blue-300  hover:transition-opacity  rounded-2xl ">
+              Хичээл үзэх
             </button>
           </div>
         ) : (
@@ -68,8 +68,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             {"сагслах"}
           </Button>
         )}
-
-        <span>{course.price}</span>
+        {router.pathname === "/myCourses" ? (
+          <span></span>
+        ) : (
+          <span> Үнэ : {course.price}₮</span>
+        )}
       </div>
     </div>
   );
