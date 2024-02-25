@@ -9,6 +9,7 @@ import { CldVideoPlayer } from "next-cloudinary";
 import { FcVideoCall } from "react-icons/fc";
 import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
+import BestDiv from "../components/Layout/BestDiv";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
@@ -76,11 +77,10 @@ const Detail: FunctionComponent<DetailProps> = () => {
             width="800"
             height="800"
             controls={true}
-            autoplay={true}
-            loop={true}
             src={`${imgUrl}/${localStorageVideo}`}
           />
         )}
+
         <div className="border p-4 rounded-lg  ml-0 md:ml-12  ">
           <h1 className="flex w-full justify-start items-center pt-2 text-xl">
             Хичээлүүд
