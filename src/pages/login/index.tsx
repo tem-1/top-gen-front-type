@@ -136,7 +136,7 @@ const Login: FunctionComponent<LoginProps> = () => {
                       <p className="mb-0 mx-auto text-center text-sm font-semibold">
                         New here?{" "}
                         <Link
-                          href="#"
+                          href="/register"
                           className="underline text-orange-500 transition duration-150 ease-in-out hover:text-orange-600 focus:text-orange-600 active:text-orange-700"
                         >
                           Register

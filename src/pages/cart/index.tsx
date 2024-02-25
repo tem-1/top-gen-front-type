@@ -73,7 +73,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   }, [cartItems]);
 
   const notifyError = (error: string) => toast.error(error); // Error toast function
-  const notifySuccess = (message: string) => toast.success(message); // Success toast function
+  const notifySuccess = (message: string) => toast.success(message);
 
   console.log("state dotor hadgalsan", senderCode);
   const checkPayment = async () => {
