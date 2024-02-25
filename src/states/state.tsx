@@ -48,11 +48,16 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [lesson, setLesson] = useState<Lesson[]>([]);
   const [myLesson, setMyLesson] = useState([]);
   const [allUser, setAllUser] = useState([]);
+  const token: any =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
     if (!fetched) {
       getCourse();
       getAllUsers();
+      if (token) {
+        getMyLesson();
+      }
     }
   }, [fetched]);
 
@@ -123,8 +128,8 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const getMyLesson = async () => {
     try {
       const res = await axiosInstance.get("/myLesson");
-      setMyLesson(res.data.data);
       setFetched(true);
+      setMyLesson(res.data.data);
     } catch (error) {
       handleApiError(error);
       throw error;

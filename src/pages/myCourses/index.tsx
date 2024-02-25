@@ -6,10 +6,7 @@ import { useCourseContext } from "@/states/state";
 interface MyCoursesProps {}
 
 const MyCourses: FunctionComponent<MyCoursesProps> = () => {
-  const { myLesson, getMyLesson } = useCourseContext();
-  useEffect(() => {
-    getMyLesson();
-  }, []);
+  const { myLesson } = useCourseContext();
 
   const courses = myLesson.map((el: any) => el.courseId);
 
