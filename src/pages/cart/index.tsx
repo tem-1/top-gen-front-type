@@ -23,6 +23,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   const [imageData, setImageData] = useState<string>("");
   const [senderCode, setSenderCode] = useState<any>();
   const [bankPhotos, setBankPhotos] = useState<any>([]);
+
   console.log(" banknii zuragnuuud : ", bankPhotos);
   useEffect(() => {
     const qpay = async () => {
@@ -78,7 +79,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
     qpay();
   }, [cartItems]);
 
-  const notifyError = (error: string) => toast.error(error); // Error toast function
+  const notifyError = (error: string) => toast.error(error);
   const notifySuccess = (message: string) => toast.success(message);
 
   console.log("state dotor hadgalsan", senderCode);
@@ -88,6 +89,9 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
         `/qpayRent/callback/${senderCode}`
       );
       notifySuccess(response.data.message);
+      if (response.data.data) {
+        localStorage.removeItem("shopping-cart");
+      }
     } catch (error: any) {
       notifyError(error.response.data.message);
     }
@@ -135,6 +139,7 @@ const CartPage: React.FC = () => {
   const { cartItems, removeFromCart } = useShoppingCart();
   const [totalPrice, setTotalPrice] = useState(0);
   const [showQr, setShowQr] = useState(false);
+
   useEffect(() => {
     const calculatedTotalPrice = cartItems.reduce(
       (total: any, item: any) => total + item.price,
