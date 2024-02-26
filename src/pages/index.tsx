@@ -12,6 +12,7 @@ import CommentCard from "./components/cards/CommentCardt";
 import Loader from "./components/Loader";
 import { useCourseContext } from "@/states/state";
 import Footer from "./components/Footer";
+import CommentButton from "./components/cards/CommentButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
         <div className="w-full">
           <Navbar />
           <Image
-            className=" h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px] "
+            className="w-full  justify-center  h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px] "
             src={bgCover}
             width={1920}
             height={600}
@@ -59,16 +60,7 @@ export default function Home() {
                 </span>
                 <div className="">
                   <CommentCard />
-                </div>
-                <div className="w-auto rounded-xl my-12 bg-white shadow-xl flex px-2 py-2 gap-2">
-                  <textarea
-                    rows={1}
-                    className=" border rounded-xl flex-1 p-4"
-                    placeholder="Сэтгэгдэл бичих..."
-                  ></textarea>
-                  <Button className="primary-button px-6 mt-2 flex ">
-                    Илгээх
-                  </Button>
+                  <CommentButton />
                 </div>
               </div>
             </div>

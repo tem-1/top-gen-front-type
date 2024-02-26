@@ -73,12 +73,16 @@ const Navlinks = () => {
             )}
           </div>
           {/* mobile nav */}
-          <div className={`${heading === link.name ? "md:hidden" : "hidden"}`}>
+          <div
+            className={`${
+              heading === link.name ? "md:hidden lg:hidden" : "hidden"
+            }`}
+          >
             {link.sublinks?.map((slink, k) => (
               <div key={k}>
                 <div className="">
                   <Link
-                    className="py-4 pl-7 font-semibold md:pr-0 pr-5"
+                    className="py-4 pl-7 font-semibold md:pr-0 lg:pr-0 pr-5"
                     href={slink.link}
                   >
                     {slink.name}
