@@ -6,12 +6,12 @@ import { CiFacebook, CiInstagram, CiTwitter, CiYoutube } from "react-icons/ci";
 
 function Footer() {
   return (
-    <div className="pt-16">
+    <div className=" ">
       <div className="w-full mainColor border-gray-300 border-t">
         <div className="container mx-auto py-12">
           <div className="xl:flex lg:flex md:flex pt-6">
             <div className="">
-              <div className="flex items-center mb-6 xl:mb-0 lg:mb-0">
+              <div className="flex items-center mb-6 xl:mb-0 lg:mb-0 pt-16">
                 <Image width={300} height={300} src={bg} alt="footer  photo" />
               </div>
             </div>

@@ -93,7 +93,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
     }
   };
   return (
-    <div>
+    <div className=" ">
       <div className="">
         {imageData && (
           <Image
@@ -104,7 +104,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
             className="h-200 w-200"
           />
         )}
-        <div className=" grid grid-cols-4 mt-4">
+        <div className=" grid grid-cols-4 mt-4 ">
           {bankPhotos.map((bank: any, index: any) => (
             <div key={index} className="flex">
               <Link href={bank?.link}>
@@ -219,6 +219,7 @@ const CartPage: React.FC = () => {
           </div>
         )}
       </div>
+      <div className="h-[500px]  sm:h-[400px] md:h-[300px] lg:h-[250px] "></div>
     </Layout>
   );
 };

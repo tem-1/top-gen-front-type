@@ -26,9 +26,13 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }: LayoutProps) => {
   }, []);
 
   return (
-    <div>
+    <div className=" ">
       <Navbar />
-      {loading ? <Loader /> : <div className="w-full">{children}</div>}
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="w-full min-h-screen">{children}</div>
+      )}
       <Footer />
     </div>
   );
