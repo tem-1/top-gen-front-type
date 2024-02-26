@@ -8,9 +8,7 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
-
 interface RegisterProps {}
-
 const Register: FunctionComponent<RegisterProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
   const notifyError = (error: string) => toast.error(error);
@@ -64,8 +62,6 @@ const Register: FunctionComponent<RegisterProps> = () => {
       [name]: value,
     });
   };
-
-  console.log(form);
 
   return (
     <>
