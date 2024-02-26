@@ -8,6 +8,7 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imgUrl } from "@/hooks/img";
+import Link from "next/link";
 type CartItem = {
   _id: string;
   name: string;
@@ -21,7 +22,8 @@ type CartItem = {
 const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   const [imageData, setImageData] = useState<string>("");
   const [senderCode, setSenderCode] = useState<any>();
-
+  const [bankPhotos, setBankPhotos] = useState<any>([]);
+  console.log(" banknii zuragnuuud : ", bankPhotos);
   useEffect(() => {
     const qpay = async () => {
       try {
@@ -34,9 +36,8 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
               Course: c,
             }
           );
-          console.log(" new invoice : ", invoiceRes.data);
+          console.log(" new invoice : ", invoiceRes.data.data);
           const invoice_id: any = invoiceRes.data.data._id;
-
           const token = localStorage.getItem("token");
 
           const response = await axios.post(
@@ -48,6 +49,11 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
               },
             }
           );
+          console.log(
+            " ******************************* ",
+            response.data.data.urls
+          );
+          setBankPhotos(response.data.data.urls);
           if (
             response.data &&
             response.data.invoice &&
@@ -98,6 +104,22 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
             className="h-200 w-200"
           />
         )}
+        <div className=" grid grid-cols-4 mt-4">
+          {bankPhotos.map((bank: any, index: any) => (
+            <div key={index} className="flex">
+              <Link href={bank?.link}>
+                <Image
+                  className="p-1  rounded-3xl"
+                  key={index}
+                  src={bank.logo}
+                  width={50}
+                  height={50}
+                  alt={`${bank.name} logo`}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
         <button
           onClick={checkPayment}
           className="p-2 bg-blue-400 rounded-md my-4"
