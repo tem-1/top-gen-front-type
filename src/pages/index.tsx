@@ -27,7 +27,7 @@ export default function Home() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="w-full">
+        <div className="w-full  ">
           <Navbar />
           <Image
             className="w-full  justify-center  h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px] "
@@ -64,6 +64,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className=" my-[200px]"></div>
           </BestDiv>
           <Footer />
         </div>

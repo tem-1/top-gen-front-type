@@ -14,13 +14,14 @@ const NewsPage: FunctionComponent<NewsPageProps> = () => {
         </h1>
       </div>
       <BestDiv>
-        <div className=" h-screen  mt-[200px]  ">
+        <div className=" min-h-screen  mt-[200px]  ">
           <NewsList />
-          <div className=" my-8">
+          <div className="my-8">
             <NewsList />
           </div>
         </div>
       </BestDiv>
+      <div className=" "></div>
     </Layout>
   );
 };
