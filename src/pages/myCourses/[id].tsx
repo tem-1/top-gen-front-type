@@ -16,14 +16,8 @@ import axiosInstance from "@/hooks/axios";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const {
-    getLesson,
-    getSingleCourse,
-    singleCourse,
-    lastViewVideo,
-    getAllLastVideo,
-  } = useCourseContext();
-  console.log(" last vide ", lastViewVideo);
+  const { getLesson, getSingleCourse, singleCourse, lastViewVideo } =
+    useCourseContext();
   const [lessonName, setLessonName] = useState<string>("");
   const [videoSrc, setVideoSrc] = useState<string>();
   const router = useRouter();
