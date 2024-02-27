@@ -39,10 +39,10 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   return (
     <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
       <div className="w-full">
-        <Link href={`/myCourses/${course._id}`}>
+        <Link href={`/myCourses/${course?._id}`}>
           <AspectRatio ratio={16 / 9}>
             <Image
-              src={`${imgUrl}/${course.photo}`}
+              src={`${imgUrl}/${course?.photo}`}
               alt="Course Image"
               layout="fill"
               className="rounded-tl-2xl rounded-br-2xl object-cover cursor-pointer"
@@ -50,13 +50,13 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </AspectRatio>
         </Link>
       </div>
-      <span className="uppercase">{course.coursname}</span>
+      <span className="uppercase">{course?.coursname}</span>
       <span className="text-xs my-2"> Багш : {course?.employee?.name}</span>
       <hr className="my-4" />
       <div className="flex h-10 justify-between items-center">
         {router.pathname === "/myCourses" ? (
           <div className="">
-            <Link href={`/myCourses/${course._id}`}>
+            <Link href={`/myCourses/${course?._id}`}>
               <button className="p-3 border border-blue-300  hover:transition-opacity  rounded-2xl ">
                 Хичээл үзэх
               </button>
@@ -90,7 +90,7 @@ const MyCourseList: React.FC<CourseListProps> = ({ courses }) => {
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {courses?.map((course: any) => (
-          <CourseCard key={course._id} course={course} />
+          <CourseCard key={course?._id} course={course} />
         ))}
       </div>
     </>

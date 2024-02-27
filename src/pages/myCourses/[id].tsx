@@ -16,7 +16,14 @@ import axiosInstance from "@/hooks/axios";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const { getLesson, getSingleCourse, singleCourse } = useCourseContext();
+  const {
+    getLesson,
+    getSingleCourse,
+    singleCourse,
+    lastViewVideo,
+    getAllLastVideo,
+  } = useCourseContext();
+  console.log(" last vide ", lastViewVideo);
   const [lessonName, setLessonName] = useState<string>("");
   const [videoSrc, setVideoSrc] = useState<string>();
   const router = useRouter();
@@ -53,7 +60,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
       console.log("Error fetching video:", err.message);
     }
   };
-
+  const handleLastVideoSrc = async () => {};
   useEffect(() => {
     if (singleCourse && singleCourse.lessons) {
       const fetchDurations = async () => {
@@ -71,7 +78,6 @@ const Detail: FunctionComponent<DetailProps> = () => {
             console.error("Error fetching duration for lesson:", error);
           }
         }
-        // Do something with durations if needed
       };
       fetchDurations();
     }
@@ -83,7 +89,6 @@ const Detail: FunctionComponent<DetailProps> = () => {
 
   const VideoPlayer = () => {
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
       setLoading(true);
       const timeout = setTimeout(() => {
@@ -151,7 +156,10 @@ const Detail: FunctionComponent<DetailProps> = () => {
         </div>
         <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto">
-            <button className="m-2 mb-4 p-3 mx-4 bg-cyan-400 rounded-lg flex">
+            <button
+              onClick={handleLastVideoSrc}
+              className="m-2 mb-4 p-3 mx-4 bg-cyan-400 rounded-lg flex"
+            >
               <FcVideoCall className="mt-1 mr-2  " /> Хамгийн сүүлд үзсэн
             </button>
             <div className="ml-12 mb-2 flex">
