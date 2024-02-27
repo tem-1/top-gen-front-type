@@ -11,14 +11,17 @@ import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
 import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
+import axiosInstance from "@/hooks/axios";
+
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
   const { getLesson, getSingleCourse, singleCourse } = useCourseContext();
-  const [lessName, setLessonName] = useState("");
+  const [lessonName, setLessonName] = useState<string>("");
+  const [videoSrc, setVideoSrc] = useState<string>();
   const router = useRouter();
-  console.log(" router  hewlew", router);
   const { id } = router.query;
+  const courseDetailId = id;
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {
       getSingleCourse(id);
@@ -26,15 +29,30 @@ const Detail: FunctionComponent<DetailProps> = () => {
     }
   }, [id]);
 
-  const handleChangeVideo = (video: string) => {
-    localStorage.setItem("video", video);
-    console.log("------------------------------------", video);
-    window.location.reload();
+  const handleChangeVideo = async (video: string) => {
+    try {
+      const res = await axiosInstance.post("/suuldUzsenVideo", {
+        lessonVideo: video,
+        courseId: courseDetailId,
+      });
+      console.log("Video saved:", res.data.data._id);
+      videAxios(res.data.data._id);
+    } catch (err: any) {
+      console.log("Error saving video:", err.message);
+    }
   };
 
-  const [lessonDurations, setLessonDurations] = useState<{
-    [key: string]: number;
-  }>({});
+  const videAxios = async (lastVideoId: string) => {
+    try {
+      const res = await axiosInstance.post(`/suuldUzsenVideo/${lastVideoId}`, {
+        courseId: courseDetailId,
+      });
+      console.log("****************************", res.data?.data);
+      setVideoSrc(res.data?.data[0].lessonVideo || "");
+    } catch (err: any) {
+      console.log("Error fetching video:", err.message);
+    }
+  };
 
   useEffect(() => {
     if (singleCourse && singleCourse.lessons) {
@@ -53,7 +71,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
             console.error("Error fetching duration for lesson:", error);
           }
         }
-        setLessonDurations(durations);
+        // Do something with durations if needed
       };
       fetchDurations();
     }
@@ -62,10 +80,54 @@ const Detail: FunctionComponent<DetailProps> = () => {
   const handleChangeName = (name: string) => {
     setLessonName(name);
   };
-  let localStorageVideo = "";
-  if (typeof window !== "undefined") {
-    localStorageVideo = localStorage.getItem("video") || "";
-  }
+
+  const VideoPlayer = () => {
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      setLoading(true);
+      const timeout = setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      return () => clearTimeout(timeout);
+    }, [videoSrc]);
+
+    return (
+      <div>
+        {loading ? (
+          <div className="w-full h-full flex items-center justify-center">
+            <div
+              className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+          </div>
+        ) : videoSrc ? (
+          <CldVideoPlayer
+            id={`${Math.random().toString(36).substring(7)}`}
+            width="800"
+            height="200"
+            controls={true}
+            src={`${imgUrl}/${videoSrc}`}
+          />
+        ) : (
+          <div className="text-red-500">
+            <CldVideoPlayer
+              id={`${Math.random().toString(36).substring(7)}`}
+              width="800"
+              height="200"
+              controls={true}
+              src={`${imgUrl}/${singleCourse.lessons[0].video}`}
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <Layout>
       <Image
@@ -75,28 +137,23 @@ const Detail: FunctionComponent<DetailProps> = () => {
         height={600}
         alt="bg"
       />
-      <div className="container border  mt-12 h-auto flex  flex-col md:flex-row  bg-white p-4 rounded-md">
+      <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white p-4 rounded-md">
         <div className="max-w-[1000px]">
-          {localStorageVideo && (
-            <CldVideoPlayer
-              id={`${Math.random().toString(36).substring(7)}`}
-              width="800"
-              height="200"
-              controls={true}
-              src={`${imgUrl}/${localStorageVideo}`}
-            />
-          )}
+          <VideoPlayer />
           <div className="hidden sm:hidden md:block lg:block mt-8 ">
             <h1 className="">Сургалтын тайлбар:</h1>
-            <p className=" text-gray-400 text-sm m-4">
+            <p className="text-gray-400 text-sm m-4">
               {singleCourse.description}
             </p>
             <p>Сэтгэгдэл бичих :</p>
             <CommentButton />
           </div>
         </div>
-        <div className=" flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
+        <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto">
+            <button className="m-2 mb-4 p-3 mx-4 bg-cyan-400 rounded-lg flex">
+              <FcVideoCall className="mt-1 mr-2  " /> Хамгийн сүүлд үзсэн
+            </button>
             <div className="ml-12 mb-2 flex">
               <FcVideoCall className="mt-1 mr-2  " />
               <span>Хичээлүүд</span>
@@ -112,8 +169,8 @@ const Detail: FunctionComponent<DetailProps> = () => {
                   <div className="flex">
                     <div
                       onClick={() => {
-                        handleChangeVideo(item.video),
-                          handleChangeName(item.title);
+                        handleChangeVideo(item.video);
+                        handleChangeName(item.title);
                       }}
                       className="my-1 cursor-pointer hover:underline rounded-sm p-1 w-full h-full mr-1 flex items-start justify-center text-blue-400 border border-blue-400"
                     >
