@@ -28,7 +28,6 @@ export default function Home() {
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     setSearchParams(searchTerm);
-
     if (!searchTerm) {
       setFilteredData(course);
     } else {

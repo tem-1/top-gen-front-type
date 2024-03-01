@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imgUrl } from "@/hooks/img";
+import { useCourseContext } from "@/states/state";
 
 interface Course {
   _id: string;
@@ -27,13 +28,52 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+  const userFromLocalStorage = localStorage.getItem("user");
+  const storedUser = userFromLocalStorage
+    ? JSON.parse(userFromLocalStorage)
+    : null;
+  const [filteredData, setFilteredData] = useState(course);
+
+  const { myLesson } = useCourseContext();
+
+  console.log(myLesson);
+
+  // const test = myLesson.find((x: any) => {
+  //   const i = x.courseId?._id === filteredData._id;
+  //   console.log("i dugaar index:", i);
+  //   return i; // return true or false based on condition
+  // });
+
+  // const baina = myLesson.map((el: any, i: number) => ({
+  //   check: el.createUser === storedUser._id && el.courseId._id === course._id,
+  // }));
+
+  const isInMyLessons = myLesson.some((lesson: any) => {
+    if (lesson?.courseId && lesson?.createUser) {
+      return lesson.courseId._id.toLowerCase() === course._id.toLowerCase();
+    }
+    return false;
+  });
+
+  console.log(
+    "idssssssssssssssssssssssssssssssssssssssssssssssssssss",
+    isInMyLessons
+  );
+
+  // console.log("----------------------------", test);
+
   const notifySuccess = (message: any) =>
     toast.success("Сагсанд нэмэглээ " + message);
+
   const router = useRouter();
+
   console.log("router pathname", router.pathname);
+
   const { increaseCartQuantity } = useShoppingCart();
+
   const handleAdd = (course: any) => {
     increaseCartQuantity(course);
+
     notifySuccess(course.coursname);
   };
   return (
@@ -60,7 +100,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
               Хичээл үзэх
             </button>
           </div>
-        ) : (
+        ) : isInMyLessons ? null : (
           <Button
             onClick={() => handleAdd(course)}
             className="bg-[#FD3F00] rounded-md"
@@ -69,9 +109,18 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </Button>
         )}
         {router.pathname === "/myCourses" ? (
-          <span></span>
+          <div className=""></div>
         ) : (
-          <span> Үнэ : {course.price}₮</span>
+          <div>
+            {isInMyLessons ? (
+              <div className="bg-green-300 p-2 rounded-md">
+                {" "}
+                Худалдаж авсан{" "}
+              </div>
+            ) : (
+              <span> Үнэ : {course.price}₮</span>
+            )}
+          </div>
         )}
       </div>
     </div>
