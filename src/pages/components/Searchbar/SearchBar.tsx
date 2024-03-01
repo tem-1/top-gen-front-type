@@ -1,6 +1,7 @@
 import React from "react";
 import { Search } from "lucide-react";
-const SearchBar = () => {
+
+const SearchBar = ({ onSearch }: any) => {
   return (
     <div className="flex full justify-center ">
       <div className=" mainColor p-6 flex  w-[20%] h-12 rounded-l-lg items-center justify-center text-white">
@@ -10,6 +11,7 @@ const SearchBar = () => {
         type="text"
         className="w-[75%]  border-gray-400 px-10"
         placeholder="Сургалт хайх"
+        onChange={(event) => onSearch(event)}
       />
       <div className=" mainColor flex  w-[50px] rounded-r-lg items-center justify-center">
         <Search className="text-white " />

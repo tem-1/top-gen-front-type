@@ -29,10 +29,10 @@ const Navlinks = () => {
     {
       name: "Сэтгэгдлүүд",
     },
-    {
-      name: "Мэдээ",
-      link: "/news",
-    },
+    // {
+    //   name: "Мэдээ",
+    //   link: "/news",
+    // },
   ];
 
   return (
