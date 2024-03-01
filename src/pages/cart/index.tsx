@@ -32,7 +32,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
           const c = cartItems.map((el) => ({ _id: el._id }));
           console.log("course _id :", c);
           const invoiceRes = await axios.post(
-            "https://topgenius.tanuweb.cloud/api/v1/invoice",
+            "https://topgeniuses.tanuweb.cloud/api/v1/invoice",
             {
               Course: c,
             }
@@ -42,7 +42,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
           const token = localStorage.getItem("token");
 
           const response = await axios.post(
-            `https://topgenius.tanuweb.cloud/api/v1/qpayRent/${invoice_id}`,
+            `https://topgeniuses.tanuweb.cloud/api/v1/qpayRent/${invoice_id}`,
             {},
             {
               headers: {

@@ -49,7 +49,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
         courseId: courseDetailId,
       });
       console.log("****************************", res.data?.data);
-      setVideoSrc(res.data?.data[0].lessonVideo || "");
+      setVideoSrc(res.data?.data?.[0].lessonVideo || "");
     } catch (err: any) {
       console.log("Error fetching video:", err.message);
     }
@@ -119,7 +119,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
               width="800"
               height="200"
               controls={true}
-              src={`${imgUrl}/${singleCourse.lessons[0].video}`}
+              src={`${imgUrl}/${singleCourse.lessons?.[0].video}`}
             />
           </div>
         )}
