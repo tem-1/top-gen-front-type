@@ -54,6 +54,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
           </div>
         </div>
       </div>
+      <div className=" h-[200px] "></div>
     </Layout>
   );
 };
