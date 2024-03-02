@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imgUrl } from "@/hooks/img";
 import Link from "next/link";
+import { useRouter } from "next/router";
 type CartItem = {
   _id: string;
   name: string;
@@ -20,6 +21,7 @@ type CartItem = {
   employee: any;
 };
 const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
+  const router = useRouter();
   const [imageData, setImageData] = useState<string>("");
   const [senderCode, setSenderCode] = useState<any>();
   const [bankPhotos, setBankPhotos] = useState<any>([]);
@@ -89,8 +91,9 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
         `/qpayRent/callback/${senderCode}`
       );
       notifySuccess(response.data.message);
-      if (response.data.data) {
+      if (response) {
         localStorage.removeItem("shopping-cart");
+        router.push(`/myCourses`);
       }
     } catch (error: any) {
       notifyError(error.response.data.message);

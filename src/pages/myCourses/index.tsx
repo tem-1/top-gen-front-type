@@ -29,6 +29,7 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
           </p>
           <MyCourseList courses={courses} />
         </div>
+        <div className=" my-[200px]"> </div>
       </Layout>
     </div>
   );
