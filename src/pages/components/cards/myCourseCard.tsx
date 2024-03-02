@@ -61,6 +61,10 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
                 Хичээл үзэх
               </button>
             </Link>
+            <span className="p-1 bg-cyan-400  text-red-400">
+              {" "}
+              Дуусах хугацаа:{course?.duusahHugatsaa}
+            </span>
           </div>
         ) : (
           <Button

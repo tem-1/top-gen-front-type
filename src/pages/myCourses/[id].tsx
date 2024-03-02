@@ -119,7 +119,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
               width="800"
               height="200"
               controls={true}
-              src={`${imgUrl}/${singleCourse.lessons?.[0].video}`}
+              src={`${imgUrl}/${singleCourse.lessons?.[0]?.video}`}
             />
           </div>
         )}
