@@ -55,11 +55,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     return false;
   });
 
-  console.log(
-    "idssssssssssssssssssssssssssssssssssssssssssssssssssss",
-    isInMyLessons
-  );
-
   // console.log("----------------------------", test);
 
   const notifySuccess = (message: any) =>
@@ -77,10 +72,10 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     notifySuccess(course.coursname);
   };
   return (
-    <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
+    <div className="relative h-auto p-4 flex flex-col bg-white rounded-lg">
       <div className="w-full">
         <Link href={`/coursedetail/${course._id}`}>
-          <AspectRatio ratio={16 / 9}>
+          <AspectRatio ratio={16 / 16}>
             <Image
               src={`${imgUrl}/${course.photo}`}
               alt="Course Image"
@@ -90,9 +85,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </AspectRatio>
         </Link>
       </div>
-      <span className="uppercase">{course.coursname}</span>
+      <span className="uppercase my-4">{course.coursname}</span>
       <span className="text-xs my-2"> Багш : {course?.employee?.name}</span>
-      <hr className="my-4" />
+      <hr className="my-4  " />
       <div className="flex h-10 justify-between items-center">
         {router.pathname === "/myCourses" ? (
           <div className="">
@@ -103,12 +98,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         ) : isInMyLessons ? null : (
           <Button
             onClick={() => handleAdd(course)}
-            className="bg-[#FD3F00] rounded-md"
+            className="bg-[#FD3F00] rounded-md absolute bottom-5 right-12 "
           >
             {"сагслах"}
           </Button>
         )}
-        {router.pathname === "/myCourses" ? (
+        {router.pathname === `/myCourses` ? (
           <div className=""></div>
         ) : (
           <div>
