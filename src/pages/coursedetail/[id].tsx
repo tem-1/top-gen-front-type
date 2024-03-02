@@ -17,7 +17,6 @@ const Detail: FunctionComponent<DetailProps> = () => {
   const { getLesson, getSingleCourse, singleCourse } = useCourseContext();
   const [lessName, setLessonName] = useState("");
   const router = useRouter();
-  console.log(" router  hewlew", router);
   const { id } = router.query;
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {

@@ -6,7 +6,11 @@ import MyCourseList from "../components/cards/myCourseCard";
 interface MyCoursesProps {}
 
 const MyCourses: FunctionComponent<MyCoursesProps> = () => {
-  const { myLesson } = useCourseContext();
+  const { myLesson, getMyLesson } = useCourseContext();
+
+  useEffect(() => {
+    getMyLesson();
+  }, [myLesson]);
 
   const courses = myLesson.map((el: any) => el.courseId);
 

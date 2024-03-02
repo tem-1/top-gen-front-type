@@ -27,6 +27,7 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+  // let realHugatsaa = hugatsaa.split("T");
   const notifySuccess = (message: any) =>
     toast.success("Сагсанд нэмэглээ " + message);
   const router = useRouter();
@@ -36,6 +37,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     increaseCartQuantity(course);
     notifySuccess(course.coursname);
   };
+
+  console.log(course);
   return (
     <div className="h-auto p-4 flex flex-col bg-white rounded-lg">
       <div className="w-full">
@@ -61,10 +64,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
                 Хичээл үзэх
               </button>
             </Link>
-            <span className="p-1 bg-cyan-400  text-red-400">
-              {" "}
-              Дуусах хугацаа:{course?.duusahHugatsaa}
-            </span>
           </div>
         ) : (
           <Button
