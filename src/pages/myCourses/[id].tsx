@@ -31,9 +31,8 @@ const Detail: FunctionComponent<DetailProps> = () => {
   const courseDetailId: any = id;
 
   const filter = myLesson.filter(
-    (x: any) => x.courseId._id.toLowerCase() === courseDetailId?.toLowerCase()
+    (x: any) => x?.courseId?._id.toLowerCase() === courseDetailId?.toLowerCase()
   );
-  console.log("------------------------__)))", filter[0].duusahHugatsaa);
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {
       getSingleCourse(id);
@@ -148,7 +147,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
         alt="bg"
       />
       <div className=" container mt-12 text-red-500 text-xl">
-        <p>Сургалт дуусах хугацаа: {filter[0].duusahHugatsaa}</p>
+        <p>Сургалт дуусах хугацаа: {filter?.[0]?.duusahHugatsaa}</p>
       </div>
 
       <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white p-4 rounded-md">

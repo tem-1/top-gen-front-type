@@ -27,7 +27,6 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
-  // let realHugatsaa = hugatsaa.split("T");
   const notifySuccess = (message: any) =>
     toast.success("Сагсанд нэмэглээ " + message);
   const router = useRouter();
