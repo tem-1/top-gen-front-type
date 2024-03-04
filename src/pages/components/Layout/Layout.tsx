@@ -26,7 +26,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }: LayoutProps) => {
   }, []);
 
   return (
-    <div className=" ">
+    <div className="w-full">
       <Navbar />
       {loading ? (
         <Loader />

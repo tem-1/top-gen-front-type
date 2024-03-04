@@ -58,7 +58,7 @@ export default function Home() {
             alt="bg"
           />
           <BestDiv>
-            <div className="mt-12 z-10 p-6">
+            <div className="my-12 z-10 ">
               <SearchBar onSearch={onSearch} />
               <h1 className="my-12 p-6">Бүх сургалт</h1>
               <CourseList courses={filteredData} />
@@ -77,7 +77,8 @@ export default function Home() {
             </div> */}
 
             <div className=" my-[200px] "></div>
-            <div className=" h-auto relative bg-gradient-to-b mainColor to-[#ffffff] flex flex-col items-center justify-center">
+            {/* comment cartiig draa  n ashiglaltand oruulah  */}
+            {/* <div className=" h-auto relative bg-gradient-to-b mainColor to-[#ffffff] flex flex-col items-center justify-center">
               <div className="flex flex-col w-[70%] items-center max-w-[1400px]">
                 <span className="text-white text-[30px] sm:text-[35px] md:text-[40px]   my-12 ">
                   Сэтгэгдлүүд
@@ -87,7 +88,7 @@ export default function Home() {
                   <CommentButton />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className=" my-[200px]"></div>
           </BestDiv>
           <Footer />
