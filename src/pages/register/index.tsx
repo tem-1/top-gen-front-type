@@ -200,6 +200,8 @@ const Register: FunctionComponent<RegisterProps> = () => {
             </div>
           </section>
         </BestDiv>
+
+        <div className=" my-[400px] "></div>
       </Layout>
     </>
   );
