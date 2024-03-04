@@ -55,7 +55,6 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   useEffect(() => {
     if (!fetched) {
       getCourse();
-      getAllUsers();
       if (token) {
         getMyLesson();
       }
@@ -67,7 +66,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       const response = await axiosInstance.get("/course");
       const { data } = response.data;
       setCourse(data);
-      setFetched(true); // Move this line here to avoid unnecessary renders
+      setFetched(true);
     } catch (error) {
       handleApiError(error);
       throw error;
@@ -147,21 +146,9 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     }
   };
 
-  const getAllUsers = async () => {
-    try {
-      const response = await axiosInstance.get("/user");
-      setAllUser(response.data.data);
-      setFetched(true);
-    } catch (error) {
-      handleApiError(error);
-      throw error;
-    }
-  };
-
   const contextValue = {
     course,
     lesson,
-    getAllUsers,
     lastViewVideo,
     allUser,
     getLesson,

@@ -16,20 +16,13 @@ import axiosInstance from "@/hooks/axios";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const {
-    getLesson,
-    getSingleCourse,
-    singleCourse,
-    lastViewVideo,
-    getMyLesson,
-    myLesson,
-  } = useCourseContext();
+  const { getLesson, getSingleCourse, singleCourse, lastViewVideo, myLesson } =
+    useCourseContext();
   const [lessonName, setLessonName] = useState<string>("");
   const [videoSrc, setVideoSrc] = useState<string>();
   const router = useRouter();
   const { id } = router.query;
   const courseDetailId: any = id;
-
   const filter = myLesson.filter(
     (x: any) => x?.courseId?._id.toLowerCase() === courseDetailId?.toLowerCase()
   );
@@ -40,7 +33,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
     }
   }, [id]);
 
-  const handleChangeVideo = async (video: string) => {
+  const handleChangeVideo = async (video: string, index: number) => {
     try {
       const res = await axiosInstance.post("/suuldUzsenVideo", {
         lessonVideo: video,
@@ -48,6 +41,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
       });
       console.log("Video saved:", res.data.data._id);
       videAxios(res.data.data._id);
+      setClickedButtonIndex(index); // Set the index of the clicked button
     } catch (err: any) {
       console.log("Error saving video:", err.message);
     }
@@ -64,7 +58,9 @@ const Detail: FunctionComponent<DetailProps> = () => {
       console.log("Error fetching video:", err.message);
     }
   };
+  const [bgColor, setBgColor] = useState("");
   const handleLastVideoSrc = async () => {};
+  const handleChangeColor = (bgColor: any) => {};
   useEffect(() => {
     if (singleCourse && singleCourse.lessons) {
       const fetchDurations = async () => {
@@ -91,7 +87,14 @@ const Detail: FunctionComponent<DetailProps> = () => {
     setLessonName(name);
   };
 
+  const [clickedButtonIndex, setClickedButtonIndex] = useState<number | null>(
+    null
+  );
+
   const VideoPlayer = () => {
+    let filterVideo = singleCourse?.lessons?.filter(
+      (x: any) => x?.video?.toLowerCase() === videoSrc?.toLowerCase()
+    );
     const [loading, setLoading] = useState(false);
     useEffect(() => {
       setLoading(true);
@@ -150,7 +153,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
         <p>Сургалт дуусах хугацаа: {filter?.[0]?.duusahHugatsaa}</p>
       </div>
 
-      <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white p-4 rounded-md">
+      <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md">
         <div className="max-w-[1000px]">
           <VideoPlayer />
           <div className="hidden sm:hidden md:block lg:block mt-8 ">
@@ -177,7 +180,13 @@ const Detail: FunctionComponent<DetailProps> = () => {
             <div className="lesson-list rounded-xl my-4">
               {singleCourse?.lessons?.map((item: any, index: number) => (
                 <div className="items-center" key={index}>
-                  <div className="lesson-item pl-2 p-4 w-full my-1 rounded-md cursor-pointer border border-blue-400 bg-blue-400">
+                  <div
+                    className={`lesson-item pl-2 p-4 w-full my-1 rounded-md cursor-pointer border border-blue-400 ${
+                      clickedButtonIndex === index
+                        ? "bg-slate-600"
+                        : " bg-blue-500 "
+                    }`}
+                  >
                     <span className="text-white">
                       {index + 1} {item.title}
                     </span>
@@ -185,10 +194,13 @@ const Detail: FunctionComponent<DetailProps> = () => {
                   <div className="flex">
                     <div
                       onClick={() => {
-                        handleChangeVideo(item.video);
+                        handleChangeVideo(item.video, index);
                         handleChangeName(item.title);
+                        handleChangeColor("bg-blue");
                       }}
-                      className="my-1 cursor-pointer hover:underline rounded-sm p-1 w-full h-full mr-1 flex items-start justify-center text-blue-400 border border-blue-400"
+                      className={`my-1 cursor-pointer hover:underline rounded-sm p-1 w-full h-full mr-1 flex items-start justify-center text-blue-400 border border-blue-400 ${
+                        clickedButtonIndex === index ? "bg-blue-600" : ""
+                      }`}
                     >
                       <span className="mr-2">
                         <FcVideoCall className="mt-1" />
