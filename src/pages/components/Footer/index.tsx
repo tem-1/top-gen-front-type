@@ -61,11 +61,7 @@ function Footer() {
               <ul>
                 <li className="text-gray-200  text-md mb-6">Утас:</li>
                 <li className="text-base text-gray-200 hover:text-gray-700 mb-5">
-                  <Link href="tel:+994048078">Салбар 1: 94048078</Link>{" "}
-                  {/* Replace <a> with <Link> */}
-                </li>
-                <li className="text-base text-gray-200 hover:text-gray-700 mb-5">
-                  <Link href="tel:+995058078">Салбар 2: 95058078</Link>{" "}
+                  <Link href="tel:+994048078"> 99100780</Link>{" "}
                   {/* Replace <a> with <Link> */}
                 </li>
               </ul>
@@ -79,8 +75,6 @@ function Footer() {
                       <div className="flex gap-4">
                         <CiFacebook className="w-8 h-8 text-gray-300" />
                         <CiInstagram className="w-8 h-8 text-gray-300" />
-                        <CiTwitter className="w-8 h-8 text-gray-300" />
-                        <CiYoutube className="w-8 h-8 text-gray-300" />
                       </div>
                     </div>
                   </div>
