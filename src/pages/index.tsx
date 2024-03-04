@@ -51,16 +51,16 @@ export default function Home() {
         <div className="w-full  ">
           <Navbar />
           <Image
-            className="w-full  justify-center  h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px] "
+            className="w-full  justify-center  h-auto sm:h-[250px] md:h-[300px] lg:h-[400px] "
             src={bgCover}
             width={1920}
             height={600}
             alt="bg"
           />
           <BestDiv>
-            <div className="mt-12 z-10">
+            <div className="mt-12 z-10 p-6">
               <SearchBar onSearch={onSearch} />
-              <h1 className="my-12">Бүх сургалт</h1>
+              <h1 className="my-12 p-6">Бүх сургалт</h1>
               <CourseList courses={filteredData} />
             </div>
 

@@ -72,7 +72,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
     notifySuccess(course.coursname);
   };
   return (
-    <div className="relative h-auto p-4 flex flex-col bg-white rounded-lg">
+    <div className="relative h-auto p-4 flex flex-col bg-white rounded-lg  w-auto">
       <div className="w-full">
         <Link href={`/coursedetail/${course._id}`}>
           <AspectRatio ratio={16 / 16}>

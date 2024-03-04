@@ -119,7 +119,7 @@ const Login: FunctionComponent<LoginProps> = () => {
                           href="/register"
                           className="underline text-orange-500 transition duration-150 ease-in-out hover:text-orange-600 focus:text-orange-600 active:text-orange-700"
                         >
-                          Бүртнгүүлэх
+                          Бүртгүүлэх
                         </Link>
                       </p>
                     </div>
