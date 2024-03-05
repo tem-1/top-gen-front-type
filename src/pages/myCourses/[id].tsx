@@ -167,12 +167,6 @@ const Detail: FunctionComponent<DetailProps> = () => {
         </div>
         <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto">
-            <button
-              onClick={handleLastVideoSrc}
-              className="m-2 mb-4 p-3 mx-4 bg-cyan-400 rounded-lg flex"
-            >
-              <FcVideoCall className="mt-1 mr-2  " /> Дуусах хугацаа
-            </button>
             <div className="ml-12 mb-2 flex">
               <FcVideoCall className="mt-1 mr-2  " />
               <span>Хичээлүүд</span>

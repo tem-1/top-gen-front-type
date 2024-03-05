@@ -50,13 +50,8 @@ export default function Home() {
       ) : (
         <div className="w-full  ">
           <Navbar />
-          <Image
-            className="w-full  justify-center  h-auto sm:h-[250px] md:h-[300px] lg:h-[400px] "
-            src={bgCover}
-            width={1920}
-            height={600}
-            alt="bg"
-          />
+          {/* cover  */}
+
           <BestDiv>
             <div className="my-12 z-10 ">
               <SearchBar onSearch={onSearch} />
