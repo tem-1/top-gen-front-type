@@ -5,10 +5,6 @@ import Image from "next/image";
 import { useCourseContext } from "@/states/state";
 
 const About = () => {
-  const { allUser } = useCourseContext();
-
-  console.log("buh bagsh nar", allUser);
-
   return (
     <Layout>
       <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">

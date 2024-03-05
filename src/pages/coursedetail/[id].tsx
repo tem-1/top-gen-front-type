@@ -1,15 +1,10 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import Image from "next/image";
 import Layout from "../components/Layout/Layout";
-import bgCover from "@/pages/assets/Section.png";
 import { useCourseContext } from "@/states/state";
 import { useRouter } from "next/router";
 import "next-cloudinary/dist/cld-video-player.css";
-import { CldVideoPlayer } from "next-cloudinary";
-import { FcVideoCall } from "react-icons/fc";
-import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
-import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
 import BgCover from "../components/Cover";
 interface DetailProps {}

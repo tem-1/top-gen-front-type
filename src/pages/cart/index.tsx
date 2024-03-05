@@ -143,10 +143,10 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
                   <Image
                     className="p-1  rounded-3xl"
                     key={index}
-                    src={bank.logo}
+                    src={bank?.logo}
                     width={50}
                     height={50}
-                    alt={`${bank.name} logo`}
+                    alt={`${bank?.name} logo`}
                   />
                 </Link>
               </div>
