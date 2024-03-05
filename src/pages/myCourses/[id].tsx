@@ -12,6 +12,7 @@ import { imgUrl } from "@/hooks/img";
 import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
 import axiosInstance from "@/hooks/axios";
+import BgCover from "../components/Cover";
 
 interface DetailProps {}
 
@@ -142,13 +143,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
 
   return (
     <Layout>
-      <Image
-        className="w-full flex justify-center h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px]"
-        src={bgCover}
-        width={1920}
-        height={600}
-        alt="bg"
-      />
+      <BgCover />
       <div className=" container mt-12 text-red-500 text-xl">
         <p>Сургалт дуусах хугацаа: {filter?.[0]?.duusahHugatsaa}</p>
       </div>

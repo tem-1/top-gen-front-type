@@ -13,15 +13,16 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import profileIcon from "../../assets/profile.png";
 import notePad from "../../assets/note.png";
+import { useCourseContext } from "@/states/state";
+import { imgUrl } from "@/hooks/img";
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("token");
     setToken(tokenFromStorage);
   }, []);
-
+  const { additional } = useCourseContext();
   return (
     <nav className="bg-white  flex justify-center">
       <div className=" max-w-full">
@@ -29,7 +30,7 @@ export default function Navbar() {
           <div className="w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
             <Link className="flex" href={"/"}>
               <Image
-                src={logo}
+                src={`${imgUrl}/${additional?.logo}`}
                 width={50}
                 height={38}
                 alt="logo"

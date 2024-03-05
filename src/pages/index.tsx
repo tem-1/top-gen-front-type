@@ -13,6 +13,7 @@ import Loader from "./components/Loader";
 import { useCourseContext } from "@/states/state";
 import Footer from "./components/Footer";
 import CommentButton from "./components/cards/CommentButton";
+import BgCover from "./components/Cover";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -51,6 +52,7 @@ export default function Home() {
         <div className="w-full  ">
           <Navbar />
           {/* cover  */}
+          <BgCover />
 
           <BestDiv>
             <div className="my-12 z-10 ">

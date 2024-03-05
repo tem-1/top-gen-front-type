@@ -11,6 +11,7 @@ import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
 import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
+import BgCover from "../components/Cover";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
@@ -27,13 +28,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
 
   return (
     <Layout>
-      <Image
-        className="w-full flex justify-center h-[150px] sm:h-[250px] md:h-[300px] lg:h-[400px]"
-        src={bgCover}
-        width={1920}
-        height={600}
-        alt="bg"
-      />
+      <BgCover />
       <div className="container border  mt-12 h-auto flex  flex-col md:flex-row  bg-white p-4 rounded-md">
         <Image
           src={`${imgUrl}/${singleCourse.photo}`}
