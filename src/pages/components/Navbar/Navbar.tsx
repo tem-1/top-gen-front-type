@@ -49,7 +49,7 @@ export default function Navbar() {
           </div>
           <ul className="md:flex hidden items-center gap-8">
             <li>
-              <Link href="/" className="py-7 px-3 inline-block">
+              <Link href="/" className="py-7 px-3 inline-block text-sm">
                 Нүүр
               </Link>
             </li>
@@ -59,17 +59,17 @@ export default function Navbar() {
           <div className="md:block hidden">
             {token ? (
               <div className="flex border p-2 border-gray-300 rounded-md">
-                <Link className="flex mx-2" href={"/profile"}>
-                  <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
+                <Link className="flex mx-2 text-sm" href={"/profile"}>
+                  <Image className="mr-2 " src={profileIcon} alt="asdasdasd" />
                   Профайл/
                 </Link>
-                <Link className="flex mx-1" href={"myCourses"}>
+                <Link className="flex mx-1 text-sm" href={"myCourses"}>
                   <Image
                     src={notePad}
                     alt="notepad"
                     className="mr-2"
                     width={20}
-                    height={10}
+                    height={5}
                   />{" "}
                   Миний сургалт{" "}
                 </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
             </li>
             <Navlinks />
             {token ? (
-              <div className="flex ">
+              <div className="flex  text-sm">
                 <Link className="flex  mx-2" href={"/profile"}>
                   <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
                   Профайл/

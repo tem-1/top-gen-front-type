@@ -42,7 +42,7 @@ const Navlinks = () => {
           <div className="px-3 text-left md:cursor-pointer group">
             <Link href={`${link.link}`}>
               <h1
-                className="py-7 flex justify-between"
+                className="py-7 flex justify-between text-sm"
                 onClick={() =>
                   heading !== link.name ? setHeading(link.name) : setHeading("")
                 }
