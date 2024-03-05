@@ -108,7 +108,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const getSingleCourse = async (id: any) => {
     try {
       const response = await axiosInstance.get(`/course/${id}`);
-      setSingleCourse(response.data.data);
+      setSingleCourse(response?.data?.data);
       setFetched(false);
     } catch (error) {
       handleApiError(error);
@@ -119,7 +119,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const getLesson = async (id: string) => {
     try {
       const response = await axiosInstance.get(`/course/${id}/lesson`);
-      setLesson(response.data.data);
+      setLesson(response?.data?.data);
       setFetched(false);
     } catch (error) {
       handleApiError(error);
@@ -131,7 +131,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     try {
       const res = await axiosInstance.get("/myLesson");
       setFetched(true);
-      setMyLesson(res.data.data);
+      setMyLesson(res?.data?.data);
     } catch (error) {
       handleApiError(error);
       throw error;
@@ -152,7 +152,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     try {
       const res = await axiosInstance.get("/additional");
       setFetched(true);
-      setAdditional(res.data.data);
+      setAdditional(res?.data?.data);
     } catch (error) {
       handleApiError(error);
       throw error;

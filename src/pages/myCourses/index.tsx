@@ -15,7 +15,8 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const refresh = () => {
+  const refresh = (event: any) => {
+    event.preventDefault();
     getMyLesson();
   };
 
