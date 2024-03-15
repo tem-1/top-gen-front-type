@@ -1,6 +1,8 @@
 import axios from "axios";
 import { utga } from "./img";
 
+// http://localhost:9090/
+
 const axiosInstance = axios.create({
   baseURL:
     utga === true
