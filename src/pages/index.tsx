@@ -55,7 +55,7 @@ export default function Home() {
           <BgCover />
 
           <BestDiv>
-            <div className="my-12 z-10 ">
+            <div className="my-12 z-10 w-full">
               <SearchBar onSearch={onSearch} />
               <h1 className="my-12 p-6">Бүх сургалт</h1>
               <CourseList courses={filteredData} />
