@@ -153,7 +153,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
           <VideoPlayer />
           <div className="hidden sm:hidden md:block lg:block mt-8 ">
             <h1 className="">Сургалтын тайлбар:</h1>
-            <p className="text-gray-400 text-sm m-4">
+            <p className="text-gray-400 text-sm m-4 text-justify">
               {singleCourse.description}
             </p>
             <p>Сэтгэгдэл бичих :</p>
@@ -162,8 +162,8 @@ const Detail: FunctionComponent<DetailProps> = () => {
         </div>
         <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto">
-            <div className="ml-12 mb-2 flex">
-              <FcVideoCall className="mt-1 mr-2  " />
+            <div className="mb-2 flex items-center justify-center">
+              <FcVideoCall />
               <span>Хичээлүүд</span>
             </div>
             <div className="lesson-list rounded-xl my-4">
