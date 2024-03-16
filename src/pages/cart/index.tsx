@@ -25,8 +25,6 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
   const [imageData, setImageData] = useState<string>("");
   const [senderCode, setSenderCode] = useState<any>();
   const [bankPhotos, setBankPhotos] = useState<any>([]);
-
-  console.log(" banknii zuragnuuud : ", bankPhotos);
   useEffect(() => {
     const qpay = async () => {
       try {
