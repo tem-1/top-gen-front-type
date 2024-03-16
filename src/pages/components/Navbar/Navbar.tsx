@@ -68,7 +68,7 @@ export default function Navbar() {
                   <Image className="mr-2 " src={profileIcon} alt="asdasdasd" />
                   Профайл/
                 </Link>
-                <Link className="flex mx-1 text-sm" href={"myCourses"}>
+                <Link className="flex mx-1 text-sm" href={"/myCourses"}>
                   <Image
                     src={notePad}
                     alt="notepad"
@@ -95,8 +95,9 @@ export default function Navbar() {
           </div>
           {/* mobile menu */}
           <ul
-            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${toggle ? "left-0" : "-left-[100%]"
-              }`}
+            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
+              toggle ? "left-0" : "-left-[100%]"
+            }`}
           >
             <li>
               <Link href="/" className="py-7 px-3  inline-block">
