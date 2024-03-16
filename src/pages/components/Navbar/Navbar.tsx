@@ -15,9 +15,13 @@ import profileIcon from "../../assets/profile.png";
 import notePad from "../../assets/note.png";
 import { useCourseContext } from "@/states/state";
 import { imgUrl } from "@/hooks/img";
+import { useShoppingCart } from "@/context/ShoppingCartContext";
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
+
   const [token, setToken] = useState<string | null>(null);
+  const { cartItems } = useShoppingCart();
+  console.log(" cartr item :::::;;", cartItems.length);
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("token");
     setToken(tokenFromStorage);
@@ -56,6 +60,7 @@ export default function Navbar() {
             <Navlinks />
           </ul>
           <Cart />
+
           <div className="md:block hidden">
             {token ? (
               <div className="flex border p-2 border-gray-300 rounded-md">
@@ -90,9 +95,8 @@ export default function Navbar() {
           </div>
           {/* mobile menu */}
           <ul
-            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
-              toggle ? "left-0" : "-left-[100%]"
-            }`}
+            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${toggle ? "left-0" : "-left-[100%]"
+              }`}
           >
             <li>
               <Link href="/" className="py-7 px-3  inline-block">
