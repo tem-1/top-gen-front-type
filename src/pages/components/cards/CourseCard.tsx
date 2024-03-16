@@ -71,7 +71,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </AspectRatio>
         </Link>
       </div>
-      <span className="uppercase my-4">{course.coursname}</span>
+      <span className="uppercase my-4 h-[50px] line-clamp-2 ">
+        {course.coursname}
+      </span>
       <span className="text-xs my-2"> Багш : {course?.employee?.name}</span>
       <hr className="my-4  " />
       <div className="flex h-10 justify-between items-center">
@@ -84,9 +86,9 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         ) : isInMyLessons ? null : (
           <Button
             onClick={() => handleAdd(course)}
-            className="bg-[#FD3F00] rounded-md absolute bottom-5 right-10 "
+            className="bg-[#FD3F00] rounded-md absolute bottom-5 right-4 "
           >
-            {"сагслах"}
+            {"Сагслах"}
           </Button>
         )}
         {router.pathname === `/myCourses` ? (
