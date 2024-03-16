@@ -8,7 +8,7 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
-interface LoginProps {}
+interface LoginProps { }
 
 const Login: FunctionComponent<LoginProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
@@ -32,10 +32,8 @@ const Login: FunctionComponent<LoginProps> = () => {
         }, 2000);
       })
       .catch((error) => {
-        console.error(
-          "There was a problem with the login request:",
-          error.message
-        );
+        // console.log(error.response.data.msg)
+        toast.error(error.response.data.msg);
       });
   };
   const handleChange = (event: any) => {

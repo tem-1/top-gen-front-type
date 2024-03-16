@@ -57,7 +57,7 @@ export default function Home() {
           <BestDiv>
             <div className="my-12 z-10 w-full">
               <SearchBar onSearch={onSearch} />
-              <h1 className="my-12 p-6">Бүх сургалт</h1>
+              <h1 className="my-12 p-6 text-3xl text-sky-400">Бүх сургалт</h1>
               <CourseList courses={filteredData} />
             </div>
 

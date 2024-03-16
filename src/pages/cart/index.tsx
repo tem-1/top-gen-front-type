@@ -30,7 +30,8 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
       try {
         if (cartItems && cartItems.length > 0) {
           const c = cartItems.map((el) => ({ _id: el._id }));
-          console.log("course _id :", c);
+          const token = localStorage.getItem("token");
+          token ? null : notifyError("Та эхлээд нэвтэрнүү!!")
           const invoiceRes = await axios.post(
             "https://topgeniuses.tanuweb.cloud/api/v1/invoice",
             {
@@ -39,7 +40,6 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
           );
           console.log(" new invoice : ", invoiceRes.data.data);
           const invoice_id: any = invoiceRes.data.data._id;
-          const token = localStorage.getItem("token");
 
           const response = await axios.post(
             `https://topgeniuses.tanuweb.cloud/api/v1/qpayRent/${invoice_id}`,
