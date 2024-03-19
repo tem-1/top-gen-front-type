@@ -39,7 +39,7 @@ const CircularProgress = ({ percent }: Props) => {
       {/* Percentage Text */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <span className="text-center text-2xl font-bold text-gray-800 dark:text-white">
-          {percent.toFixed(2)}%
+          {percent?.toFixed(2)}%
         </span>
       </div>
     </div>
