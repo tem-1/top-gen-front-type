@@ -152,13 +152,17 @@ const Detail: FunctionComponent<DetailProps> = () => {
     );
   };
 
+  const onClose = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Layout>
       <BgCover />
       <div className=" container mt-12 text-red-500 text-xl">
         <p>Сургалт дуусах хугацаа: {filter?.[0]?.duusahHugatsaa}</p>
       </div>
-      <Modal isOpen={modalOpen} id={testId} />
+      <Modal isOpen={modalOpen} id={testId} onClose={onClose} />
 
       <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md">
         <div className="max-w-[1000px]">

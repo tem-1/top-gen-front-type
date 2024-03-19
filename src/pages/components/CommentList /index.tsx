@@ -20,7 +20,7 @@ const ExampleComponent = ({ comment }: any) => {
             <div className="flex flex-row justify-between">
               <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">
                 {" "}
-                {comment[0]?.createUser?.firtname}{" "}
+                {comment[0]?.createUser?.firstname}{" "}
               </p>
               <a className="text-gray-500 text-xl" href="#">
                 <i className="fa-solid fa-trash"></i>
