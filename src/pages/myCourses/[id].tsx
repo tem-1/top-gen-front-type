@@ -13,16 +13,25 @@ import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
 import axiosInstance from "@/hooks/axios";
 import BgCover from "../components/Cover";
-
+import Link from "next/link";
+import Modal from "../components/Modal/Modal";
+import test from "node:test";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
   const { getLesson, getSingleCourse, singleCourse, lastViewVideo, myLesson } =
     useCourseContext();
   const [lessonName, setLessonName] = useState<string>("");
+  // const [test, setTest] = useState([]);
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get(`https://topgeniuses.tanuweb.cloud/api/v1/quiz/${singleCourse?._id}`)
+  //     .then((res) => setTest(res.data.data));
+  // }, [singleCourse]);
   const [videoSrc, setVideoSrc] = useState<string>();
   const router = useRouter();
   const { id } = router.query;
+  const [modalOpen, setModalOpen] = useState(false);
   const courseDetailId: any = id;
   const filter = myLesson.filter(
     (x: any) => x?.courseId?._id.toLowerCase() === courseDetailId?.toLowerCase()
@@ -47,6 +56,8 @@ const Detail: FunctionComponent<DetailProps> = () => {
       console.log("Error saving video:", err.message);
     }
   };
+
+  const [testId, setTestId] = useState("");
 
   const videAxios = async (lastVideoId: string) => {
     try {
@@ -147,6 +158,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
       <div className=" container mt-12 text-red-500 text-xl">
         <p>Сургалт дуусах хугацаа: {filter?.[0]?.duusahHugatsaa}</p>
       </div>
+      <Modal isOpen={modalOpen} id={testId} />
 
       <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md">
         <div className="max-w-[1000px]">
@@ -196,7 +208,13 @@ const Detail: FunctionComponent<DetailProps> = () => {
                       </span>{" "}
                       Үзэх
                     </div>
-                    <div className="my-1 rounded-sm p-1 w-full h-full hover:underline mr-1 flex items-start justify-center text-blue-400 border border-blue-400">
+                    <div
+                      className="my-1 rounded-sm cursor-pointer p-1 w-full h-full hover:underline mr-1 flex items-start justify-center text-blue-400 border border-blue-400"
+                      onClick={() => {
+                        setTestId(item?._id);
+                        setModalOpen(true);
+                      }}
+                    >
                       <span className="mr-2">
                         <FcQuestions className="mt-1" />
                       </span>

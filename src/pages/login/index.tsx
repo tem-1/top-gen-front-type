@@ -8,7 +8,7 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
-interface LoginProps { }
+interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
@@ -23,7 +23,6 @@ const Login: FunctionComponent<LoginProps> = () => {
       .post("/customer/login", form)
       .then((response) => {
         notify(response.data.data.name);
-        console.log(response.data.data);
         const { token } = response.data; // Assuming the token is returned in the response data
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(response.data.data));
@@ -32,8 +31,8 @@ const Login: FunctionComponent<LoginProps> = () => {
         }, 2000);
       })
       .catch((error) => {
-        // console.log(errornom.response.data.msg)
-        toast.error(error.response.data.msg);
+        console.log(error);
+        toast.error(error.response.data.message);
       });
   };
   const handleChange = (event: any) => {
@@ -43,7 +42,6 @@ const Login: FunctionComponent<LoginProps> = () => {
       [name]: value,
     });
   };
-  console.log(form);
 
   return (
     <>

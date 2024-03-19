@@ -21,7 +21,6 @@ export default function Navbar() {
 
   const [token, setToken] = useState<string | null>(null);
   const { cartItems } = useShoppingCart();
-  console.log(" cartr item :::::;;", cartItems.length);
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("token");
     setToken(tokenFromStorage);

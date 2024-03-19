@@ -14,6 +14,7 @@ import { useCourseContext } from "@/states/state";
 import Footer from "./components/Footer";
 import CommentButton from "./components/cards/CommentButton";
 import BgCover from "./components/Cover";
+import Messenger from "./components/Messenger/Messenger";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -53,7 +54,7 @@ export default function Home() {
           <Navbar />
           {/* cover  */}
           <BgCover />
-
+          <Messenger />
           <BestDiv>
             <div className="my-12 z-10 w-full">
               <SearchBar onSearch={onSearch} />
