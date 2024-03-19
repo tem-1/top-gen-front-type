@@ -1,18 +1,30 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { useCourseContext } from "@/states/state";
-import { useRouter } from "next/router";
 import "next-cloudinary/dist/cld-video-player.css";
 import { imgUrl } from "@/hooks/img";
+import { useRouter } from "next/router";
 import CommentButton from "../components/cards/CommentButton";
 import BgCover from "../components/Cover";
-interface DetailProps {}
+import { ToastContainer, toast } from "react-toastify";
+import ExampleComponent from "../components/CommentList ";
+import axiosInstance from "@/hooks/axios";
+
+interface DetailProps { }
 
 const Detail: FunctionComponent<DetailProps> = () => {
   const { getLesson, getSingleCourse, singleCourse } = useCourseContext();
   const [showFull, setShowFull] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+  const [comments, setComments] = useState<any>([]);
+  useEffect(() => {
+    axiosInstance.get(`/course/${id}/comment`).then((response) => {
+      setComments(response.data.data);
+    }).catch((error) => { console.log(error) })
+  }, [id])
+  console.log("***********", comments)
+
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {
       getSingleCourse(id);
@@ -22,6 +34,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
   console.log(singleCourse);
   return (
     <Layout>
+      <ToastContainer />
       <BgCover />
       <div className="container border  mt-12 h-auto flex  flex-col md:flex-row  bg-white p-4 rounded-md">
         <img
@@ -57,6 +70,14 @@ const Detail: FunctionComponent<DetailProps> = () => {
               )}
             </p>
 
+            Сэтгэгдлүүд
+            {
+              comments.map((comment: any) => {
+                return (
+                  <ExampleComponent key={comment._id} comment={comments} />
+                )
+              })
+            }
             <p>Сэтгэгдэл бичих :</p>
             <CommentButton />
           </div>

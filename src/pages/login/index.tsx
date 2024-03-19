@@ -32,7 +32,7 @@ const Login: FunctionComponent<LoginProps> = () => {
         }, 2000);
       })
       .catch((error) => {
-        // console.log(error.response.data.msg)
+        // console.log(errornom.response.data.msg)
         toast.error(error.response.data.msg);
       });
   };
