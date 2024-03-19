@@ -105,12 +105,12 @@ export default function Navbar() {
             </li>
             <Navlinks />
             {token ? (
-              <div className="flex  text-sm">
+              <div className="flex md:flex-row flex-col text-sm gap-6 mt-2">
                 <Link className="flex  mx-2" href={"/profile"}>
                   <Image className="mr-2" src={profileIcon} alt="asdasdasd" />
-                  Профайл/
+                  Профайл
                 </Link>
-                <Link className="flex mx-1" href={"/myCourses"}>
+                <Link className="flex mx-2" href={"/myCourses"}>
                   <Image
                     src={notePad}
                     alt="notepad"

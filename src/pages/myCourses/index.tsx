@@ -36,7 +36,7 @@ const MyCourses: FunctionComponent<MyCoursesProps> = () => {
           </p>
           <button
             onClick={refresh}
-            className="flex my-8 bg- bg-blue-500 rounded-md  p-2 "
+            className="flex my-8 bg- bg-blue-500 rounded-md  px-4 py-2 ml-4 text-white text-sm"
           >
             Шинэчлэх
             <IoReloadSharp className="  m-1  w-3  " />

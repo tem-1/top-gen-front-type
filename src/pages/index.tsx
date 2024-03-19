@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
-import bgCover from "./assets/Section.png";
 import SearchBar from "./components/Searchbar/SearchBar";
 import CourseList from "./components/cards/CourseCard";
 import BestDiv from "./components/Layout/BestDiv";
-import NewsList from "./components/cards/NewsCard";
-import { Button } from "@/components/ui/button";
-import CommentCard from "./components/cards/CommentCardt";
 import Loader from "./components/Loader";
 import { useCourseContext } from "@/states/state";
 import Footer from "./components/Footer";
-import CommentButton from "./components/cards/CommentButton";
 import BgCover from "./components/Cover";
 import Messenger from "./components/Messenger/Messenger";
-const inter = Inter({ subsets: ["latin"] });
+import NewsCard from "./components/News/NewsCard";
+import NewsSection from "./components/News/NewsSection";
 
 export default function Home() {
   const { course } = useCourseContext();
@@ -62,31 +58,18 @@ export default function Home() {
               <CourseList courses={filteredData} />
             </div>
 
-            {/* <div className="flex flex-col items-center mt-20 ">
-              <div className="rounded-xl bg-[#72C06C] text-white px-6 py-1 ">
-                Мэдээ, блог
-              </div>
-              <span className="text-[44px] text-[#38B6FF] font-semibold mb-8">
-                Шинэ мэдээ
-              </span>
-              <div className="mb-12">
-                <NewsList />
-              </div>
-            </div> */}
+            <div className=" bg-gradient-to-r from-[#FADD02] to-[#B60C3B] h-40 my-20 flex items-center justify-between text-white font-semibold px-10">
+              <span>Туршлагатай багш нар</span>
+              <span>|</span>
+              <span>Цогц хөтөлбөр</span>
+              <span>|</span>
+              <span>ЭЕШ тест</span>
+              <span>|</span>
+              <span>Батлагдсан үр дүн</span>
+            </div>
 
-            <div className=" my-[200px] "></div>
-            {/* comment cartiig draa  n ashiglaltand oruulah  */}
-            {/* <div className=" h-auto relative bg-gradient-to-b mainColor to-[#ffffff] flex flex-col items-center justify-center">
-              <div className="flex flex-col w-[70%] items-center max-w-[1400px]">
-                <span className="text-white text-[30px] sm:text-[35px] md:text-[40px]   my-12 ">
-                  Сэтгэгдлүүд
-                </span>
-                <div className="">
-                  <CommentCard />
-                  <CommentButton />
-                </div>
-              </div>
-            </div> */}
+            <NewsSection />
+
             <div className=" my-[200px]"></div>
           </BestDiv>
           <Footer />

@@ -50,7 +50,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [allUser, setAllUser] = useState([]);
   const [lastViewVideo, setVideo] = useState([]);
   const [additional, setAdditional] = useState();
-  const [courseComment, setCourseCmment] = useState([]);;
+  const [courseComment, setCourseCmment] = useState([]);
   const token: any =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
@@ -168,7 +168,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       handleApiError(error);
       throw error;
     }
-  }
+  };
   const contextValue = {
     course,
     lesson,
@@ -188,7 +188,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     additional,
     getAdditional,
     getCourseComments,
-    courseComment
+    courseComment,
   };
 
   return (
