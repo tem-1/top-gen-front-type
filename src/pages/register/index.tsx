@@ -87,21 +87,30 @@ const Register: FunctionComponent<RegisterProps> = () => {
                       <h1 className=" text-xl font-semibold ">Бүртгүүлэх</h1>
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput2">
+                      <label
+                        htmlFor=""
+                        className=""
+                      >
                         Овог нэр:
                       </label>
                       <input
                         type="text"
-                        className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                         id="exampleFormControlInput2"
                         placeholder=""
                         name="firstname"
                         value={form.firstname}
                         onChange={handleChange}
                       />
+
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput2">Нэр:</label>
+                      <label
+                        htmlFor=""
+                        className=""
+                      >
+                        Нэр:
+                      </label>
                       <input
                         type="text"
                         className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -111,10 +120,32 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.name}
                         onChange={handleChange}
                       />
-                    </div>
 
+                    </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput2">Имэйл:</label>{" "}
+                      <label
+                        htmlFor="exampleFormControlInput2"
+                        className=""
+                      >
+                        Рд дугаар:
+                      </label>
+                      <input
+                        type="text"
+                        className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        id="exampleFormControlInput2"
+                        placeholder=""
+                        name="registerNumber"
+                        value={form.registerNumber}
+                        onChange={handleChange}
+                      />
+
+                    </div>
+                    <div className="relative mb-6  rounded-md">
+                      <label
+                        htmlFor="exampleFormControlInput2"
+                      >
+                        Имэйл:
+                      </label>
                       <input
                         type="text"
                         className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -124,9 +155,15 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.email}
                         onChange={handleChange}
                       />
+
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput2">Утас:</label>
+                      <label
+                        htmlFor="exampleFormControlInput2"
+                        className=""
+                      >
+                        Утас:
+                      </label>
                       <input
                         type="text"
                         className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -136,25 +173,27 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.phone}
                         onChange={handleChange}
                       />
+
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput22">
+                      <label
+                        htmlFor="exampleFormControlInput22"
+                        className=""
+                      >
                         Нууц үг:
-                      </label>{" "}
+                      </label>
                       <input
                         type="password"
-                        className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                         id="exampleFormControlInput22"
                         placeholder="Password"
                         name="password"
                         value={form.password}
                         onChange={handleChange}
                       />
+
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput22">
-                        Нууц үг давтах:
-                      </label>{" "}
                       <input
                         type="password"
                         className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -164,6 +203,12 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.confPass}
                         onChange={handleChange}
                       />
+                      <label
+                        htmlFor="exampleFormControlInput22"
+                        className=""
+                      >
+                        Нууц үг давтах:
+                      </label>
                     </div>
                     <div className="text-center lg:text-left">
                       <button
@@ -187,8 +232,6 @@ const Register: FunctionComponent<RegisterProps> = () => {
             </div>
           </section>
         </BestDiv>
-
-        <div className=" my-[400px] "></div>
       </Layout>
     </>
   );
