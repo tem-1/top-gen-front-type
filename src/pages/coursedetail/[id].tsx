@@ -13,18 +13,15 @@ import axiosInstance from "@/hooks/axios";
 interface DetailProps { }
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const { getLesson, getSingleCourse, singleCourse } = useCourseContext();
+  const { getLesson, getSingleCourse, singleCourse, getCourseComments, courseComment } = useCourseContext();
+  const [comments, setComments] = useState([]);
   const [showFull, setShowFull] = useState(false);
   const router = useRouter();
   const { id } = router.query;
-  const [comments, setComments] = useState<any>([]);
   useEffect(() => {
-    axiosInstance.get(`/course/${id}/comment`).then((response) => {
-      setComments(response.data.data);
-    }).catch((error) => { console.log(error) })
+    getCourseComments(id);
   }, [id])
-  console.log("***********", comments)
-
+  console.log("-----------------", courseComment)
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {
       getSingleCourse(id);
@@ -70,19 +67,26 @@ const Detail: FunctionComponent<DetailProps> = () => {
               )}
             </p>
 
-            Сэтгэгдлүүд
-            {
-              comments.map((comment: any) => {
-                return (
-                  <ExampleComponent key={comment._id} comment={comments} />
-                )
-              })
-            }
+
             <p>Сэтгэгдэл бичих :</p>
             <CommentButton />
           </div>
+          <h1 className="mt-12 font-semibold text-gray-500 text-xl">
+            Сэтгэгдлүүд :
+          </h1>
+
+          {
+            courseComment?.map((comment: any) => {
+              return (
+
+                <ExampleComponent key={comment._id} comment={comment} />
+              )
+            })
+          }
         </div>
+
       </div>
+
       <div className=" h-[200px] "></div>
     </Layout>
   );

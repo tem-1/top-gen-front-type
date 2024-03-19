@@ -50,6 +50,7 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [allUser, setAllUser] = useState([]);
   const [lastViewVideo, setVideo] = useState([]);
   const [additional, setAdditional] = useState();
+  const [courseComment, setCourseCmment] = useState([]);;
   const token: any =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
@@ -158,7 +159,16 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       throw error;
     }
   };
-
+  const getCourseComments = async (id: any) => {
+    try {
+      const res = await axiosInstance.get(`/course/${id}/comment`);
+      setFetched(false);
+      setCourseCmment(res?.data?.data);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  }
   const contextValue = {
     course,
     lesson,
@@ -177,6 +187,8 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     getCourseLessons,
     additional,
     getAdditional,
+    getCourseComments,
+    courseComment
   };
 
   return (
