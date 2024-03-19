@@ -17,17 +17,19 @@ const Quiz = ({ quizData }: QuizProp) => {
       setShowScore(true);
     }
   };
-  return (
+  return quizData?.length == 0 || quizData == null ? (
+    <div>loading</div>
+  ) : (
     <div className="max-w-lg mx-auto p-6 border border-gray-300 rounded-lg w-full h-full items-center justify-center">
       {showScore ? (
         <div className="text-center text-xl font-semibold">
-          You scored {score} out of {quizData.length}
+          You scored {score} out of {quizData?.length}
         </div>
       ) : (
         <>
           <div className="mb-6">
             <div className="text-center text-lg font-semibold">
-              Question {currentQuestion + 1}/{quizData.length}
+              Question {currentQuestion + 1}/{quizData?.length}
             </div>
             <div className="text-center text-xl mt-2">
               {quizData[currentQuestion]?.question}
