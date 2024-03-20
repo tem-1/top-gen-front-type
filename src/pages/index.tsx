@@ -58,7 +58,7 @@ export default function Home() {
               <CourseList courses={filteredData} />
             </div>
 
-            <div className=" bg-gradient-to-r from-[#FADD02] to-[#B60C3B] h-40 my-20 flex items-center justify-between text-white font-semibold px-10">
+            {/* <div className=" bg-gradient-to-r from-[#FADD02] to-[#B60C3B] h-40 my-20 flex items-center justify-between text-white font-semibold px-10">
               <span>Туршлагатай багш нар</span>
               <span>|</span>
               <span>Цогц хөтөлбөр</span>
@@ -66,7 +66,13 @@ export default function Home() {
               <span>ЭЕШ тест</span>
               <span>|</span>
               <span>Батлагдсан үр дүн</span>
-            </div>
+            </div> */}
+
+            <img
+              src="/cover.jpg"
+              alt=""
+              className="w-full md:h-[300px] h-[200px] object-cover mb-8 bg-transparent"
+            />
 
             <NewsSection />
 
