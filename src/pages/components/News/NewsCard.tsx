@@ -1,4 +1,5 @@
 import { Calendar, Tag } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 interface NewsProp {
@@ -39,9 +40,11 @@ const NewsCard = ({ news }: NewsCardProp) => {
             <Calendar size={20} className="text-[#FD3F00]" />
             <span className="text-sm">{news?.createdAt?.split("T")[0]}</span>
           </div>
-          <span className="text-sm uppercase text-[#FD3F00] cursor-pointer hover:underline">
-            Цааш унших
-          </span>
+          <Link href={`/news/${news?._id}`}>
+            <span className="text-sm uppercase text-[#FD3F00] cursor-pointer hover:underline">
+              Цааш унших
+            </span>
+          </Link>
         </div>
       </div>
     </div>

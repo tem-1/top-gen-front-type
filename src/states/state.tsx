@@ -43,6 +43,8 @@ interface CourseProviderProps {
 
 export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [course, setCourse] = useState<SingleCourseState[]>([]);
+  const [news, setNews] = useState<any[]>([]);
+  const [singleNews, setSingleNews] = useState("");
   const [singleCourse, setSingleCourse] = useState<SingleCourseState[]>([]);
   const [fetched, setFetched] = useState<boolean>(false);
   const [lesson, setLesson] = useState<Lesson[]>([]);
@@ -69,6 +71,28 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       const response = await axiosInstance.get("/course");
       const { data } = response.data;
       setCourse(data);
+      setFetched(true);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+  const getNews = async () => {
+    try {
+      const response = await axiosInstance.get("/news");
+      const { data } = response.data;
+      setNews(data);
+      setFetched(true);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+  const getSingleNews = async (id: string) => {
+    try {
+      const response = await axiosInstance.get(`/news/${id}`);
+      const { data } = response.data;
+      setSingleNews(data);
       setFetched(true);
     } catch (error) {
       handleApiError(error);
@@ -177,6 +201,10 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     getLesson,
     getMyLesson,
     myLesson,
+    getNews,
+    getSingleNews,
+    news,
+    singleNews,
     singleCourse,
     fetched,
     getCourse,

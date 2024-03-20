@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import NewsCard from "./NewsCard";
 import axiosInstance from "@/hooks/axios";
+import { useCourseContext } from "@/states/state";
+import Link from "next/link";
 
 const NewsSection = () => {
-  const [news, setNews] = useState([]);
+  const { news, getNews } = useCourseContext();
   useEffect(() => {
-    axiosInstance
-      .get("https://topgeniuses.tanuweb.cloud/api/v1/news")
-      .then((res) => setNews(res.data.data));
-  });
+    getNews();
+  }, []);
   return (
     <div className="flex flex-col w-full px-10 items-center">
       <span className="mb-8 text-2xl font-semibold text-[#38B6FF]">
@@ -16,8 +16,12 @@ const NewsSection = () => {
       </span>
       <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
         {news
-          ? news.map((list, index) => {
-              return <NewsCard key={index} news={list} />;
+          ? news.map((list: any, index: any) => {
+              return (
+                <Link href={`/news/${list?._id}`}>
+                  <NewsCard key={index} news={list} />;
+                </Link>
+              );
             })
           : null}
       </div>

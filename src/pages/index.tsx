@@ -70,7 +70,7 @@ export default function Home() {
 
             <NewsSection />
 
-            <div className=" my-[200px]"></div>
+            <div className=" my-[100px]"></div>
           </BestDiv>
           <Footer />
         </div>

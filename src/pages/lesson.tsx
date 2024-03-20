@@ -7,8 +7,9 @@ import { useShoppingCart } from "@/context/ShoppingCartContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCategoryContext } from "@/states/categoryState";
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack, IoBasket } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { ShoppingBasketIcon } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -88,21 +89,36 @@ export default function Home() {
                         className="h-full w-[200px] object-cover cursor-pointer rounded"
                       />
                       <div className="flex flex-col w-full px-8 py-2">
-                        <span className="text-gray-400 ">
+                        <span className="hidden md:block text-gray-400 ">
                           {list?.category?.categoryName}
                         </span>
 
-                        <span className="text-sm mt-4 ">{list?.coursname}</span>
+                        <span className="hidden md:block text-sm mt-2 md:mt-4 ">
+                          {list?.coursname}
+                        </span>
+                        <span className="block md:hidden text-sm mt-2 md:mt-4 ">
+                          {list?.coursname?.length > 40
+                            ? list?.coursname?.slice(0, 40) + "..."
+                            : list?.coursname}
+                        </span>
                         <div className="w-full flex h-full items-end justify-end">
-                          <div className="flex gap-4 items-end">
+                          <div className="flex gap-4 items-center md:items-end">
                             <button
-                              className="text-sm bg-[#AF0740] px-4 py-1 text-white rounded-lg"
+                              className="text-sm hidden md:block bg-[#AF0740] px-4 py-1 text-white rounded-lg"
                               onClick={() => {
                                 increaseCartQuantity(list);
                               }}
                             >
                               Сагслах
                             </button>
+                            <div
+                              className="bg-[#AF0740] text-white p-1 md:hidden block rounded-lg"
+                              onClick={() => {
+                                increaseCartQuantity(list);
+                              }}
+                            >
+                              <ShoppingBasketIcon />
+                            </div>
                             <span>{list?.price} ₮</span>
                           </div>
                         </div>
