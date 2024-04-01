@@ -52,7 +52,6 @@ export default function Home() {
           {/* cover  */}
           <BgCover />
 
-          <Messenger />
           <BestDiv>
             <div className="my-12 z-10 w-full">
               <SearchBar onSearch={onSearch} />

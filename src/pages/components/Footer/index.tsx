@@ -2,12 +2,22 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link"; // Import Link from next/link
 import bg from "../../assets/footerBg.png";
-import { CiFacebook, CiInstagram, CiTwitter, CiYoutube } from "react-icons/ci";
+import { CiFacebook, CiInstagram } from "react-icons/ci";
+import { useCourseContext } from "@/states/state";
 
 function Footer() {
+  const { additional } = useCourseContext();
+  const dynamicBackgroundStyle = {
+    background: `linear-gradient(to right, ${additional?.colorFrom}, ${additional?.colorTo})`,
+    borderTop: "1px solid #d1d5db", // Equivalent to 'border-gray-300 border-t' in TailwindCSS
+  };
+  // console.log(additional);
   return (
     <div className=" ">
-      <div className="w-full mainColor border-gray-300 border-t">
+      <div
+        style={dynamicBackgroundStyle}
+        className={`w-full bg-gradient-to-r from-[${additional?.colorFrom}] to-[${additional?.colorTo}] border-gray-300 border-t`}
+      >
         <div className="container mx-auto py-12">
           <div className="xl:flex lg:flex md:flex pt-6">
             <div className="">

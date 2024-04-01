@@ -7,10 +7,6 @@ interface MyCoursesProps {}
 
 const MyCourses: FunctionComponent<MyCoursesProps> = () => {
   const { myLesson, getMyLesson } = useCourseContext();
-  // useEffect(() => {
-  //   getMyLesson();
-  // }, []);
-  console.log(myLesson);
   const courses = myLesson.map((el: any) => el.courseId);
 
   const [loading, setLoading] = useState(false);
