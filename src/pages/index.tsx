@@ -12,7 +12,6 @@ import BgCover from "./components/Cover";
 import Messenger from "./components/Messenger/Messenger";
 import NewsCard from "./components/News/NewsCard";
 import NewsSection from "./components/News/NewsSection";
-
 export default function Home() {
   const { course } = useCourseContext();
   // console.log("course", course);
@@ -47,7 +46,7 @@ export default function Home() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="w-full  ">
+        <div className="w-full">
           <Navbar />
           {/* cover  */}
           <BgCover />
