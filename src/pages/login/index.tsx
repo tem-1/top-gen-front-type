@@ -12,12 +12,14 @@ interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
+  const [isloading, setIsLoading] = useState(false);
   const [form, setFormValue] = useState<any>({
     email: "",
     password: "",
   });
   const router = useRouter();
   const handleLogin = (event: any) => {
+    setIsLoading(false);
     event.preventDefault();
     axiosInstance
       .post("/customer/login", form)
@@ -26,13 +28,20 @@ const Login: FunctionComponent<LoginProps> = () => {
         const { token } = response.data; // Assuming the token is returned in the response data
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(response.data.data));
+        setIsLoading(true);
         setTimeout(() => {
           router.push("/");
         }, 2000);
       })
       .catch((error) => {
+        setIsLoading(true);
         console.log(error);
-        toast.error(error.response.data.message);
+        if (error.response) {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
+        }
+        toast.error(error.response.data.msg);
       });
   };
   const handleChange = (event: any) => {
@@ -107,7 +116,7 @@ const Login: FunctionComponent<LoginProps> = () => {
                         onClick={handleLogin}
                         className="my-4 inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                       >
-                        Нэвтрэх
+                        {isloading ? ".........." : "Нэвтрэх"}
                       </button>
                       <p className="mb-0 mx-auto text-center text-sm font-semibold">
                         Энд дарж бүртгэлээ үүсгээрэй?{" "}

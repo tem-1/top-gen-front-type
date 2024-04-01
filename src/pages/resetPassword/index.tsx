@@ -24,7 +24,6 @@ const ResetPassword: FunctionComponent<LoginProps> = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Check if localStorage is available before accessing it
     if (typeof window !== "undefined") {
       const storedEmail = localStorage.getItem("resetEmail");
       if (storedEmail) {
@@ -47,7 +46,6 @@ const ResetPassword: FunctionComponent<LoginProps> = () => {
         notify("Success");
         console.log(response.data.data);
         setChecked(true);
-        localStorage.removeItem("resetEmail");
       })
       .catch((error) => {
         console.error(
@@ -89,6 +87,10 @@ const ResetPassword: FunctionComponent<LoginProps> = () => {
                     <div className="flex flex-row items-center justify-center lg:justify-start">
                       {/* Your social media buttons */}
                     </div>
+                    <span className=" text-xs  my-4  text-red-500  text-center">
+                      Бүртгэлтэй и-мэйл хаягаар илгээсэн 4-оронтой кодыг оруулна
+                      уу !!!
+                    </span>
                     <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                       <p className="mx-4 mb-0 text-center font-semibold dark:text-white">
                         Баталаажуулах

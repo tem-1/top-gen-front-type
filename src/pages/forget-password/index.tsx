@@ -8,22 +8,29 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import axios from "axios";
+import SmallSpinner from "../components/miniSpinner";
 interface LoginProps {}
 
 const ForgetPassword: FunctionComponent<LoginProps> = () => {
+  const [isloading, setisloading] = useState(false);
   const notify = (name: string) =>
     toast.success("Баталгаажуулах 4-н оронтой код илгээсэн :");
 
   const [form, setFormValue] = useState<any>({
     email: "",
   });
+
+  localStorage.setItem("resetEmail", form.email);
+
   const router = useRouter();
   const handleLogin = (event: any) => {
     event.preventDefault();
-    axiosInstance
-      .post("/forgetPassword", form)
+    setisloading(true);
+    axios
+      .post("/api/contact", form)
       .then((response) => {
-        localStorage.setItem("resetEmail", response.data?.data?.email);
+        setisloading(false);
         router.push("/resetPassword");
       })
       .catch((error) => {
@@ -93,7 +100,7 @@ const ForgetPassword: FunctionComponent<LoginProps> = () => {
                         onClick={handleLogin}
                         className="my-4 inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                       >
-                        Баталгаажуулах
+                        {isloading ? <SmallSpinner /> : "Баталгаажуулах"}
                       </button>
                       <p className="mb-0 mx-auto text-center text-sm font-semibold">
                         Энд дарж бүртгэлээ үүсгээрэй?{" "}

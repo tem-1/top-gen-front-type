@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import BestDiv from "../components/Layout/BestDiv";
 import Link from "next/link";
@@ -15,8 +15,20 @@ const PasswordConfirm: FunctionComponent<PasswordConfirmProps> = () => {
   const [form, setFormValue] = useState<any | null>({
     password: "",
     confPass: "",
+    email: "",
   });
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedEmail = localStorage.getItem("resetEmail");
+      if (storedEmail) {
+        setFormValue((prevForm: any) => ({
+          ...prevForm,
+          email: storedEmail,
+        }));
+      }
+    }
+  }, []);
   const notify = (name: string) => toast.success(name);
   const notifyError = (error: string) => toast.error(error);
 
@@ -28,7 +40,10 @@ const PasswordConfirm: FunctionComponent<PasswordConfirmProps> = () => {
       return notifyError("Нууц үг зөрүүтэй байна");
     }
     axiosInstance
-      .put("/customer", form)
+      .put("/customer", {
+        email: form.email,
+        newPassword: form.password,
+      })
       .then((response) => {
         notify("Амжилттай");
         setTimeout(() => {
