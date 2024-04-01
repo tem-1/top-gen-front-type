@@ -1,7 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import Image from "next/image";
 import Layout from "../components/Layout/Layout";
-import bgCover from "@/pages/assets/Section.png";
 import { useCourseContext } from "@/states/state";
 import { useRouter } from "next/router";
 import "next-cloudinary/dist/cld-video-player.css";
@@ -9,13 +7,10 @@ import { CldVideoPlayer } from "next-cloudinary";
 import { FcVideoCall } from "react-icons/fc";
 import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
-import BestDiv from "../components/Layout/BestDiv";
 import CommentButton from "../components/cards/CommentButton";
 import axiosInstance from "@/hooks/axios";
 import BgCover from "../components/Cover";
-import Link from "next/link";
 import Modal from "../components/Modal/Modal";
-import test from "node:test";
 interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
@@ -165,7 +160,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
       <Modal isOpen={modalOpen} id={testId} onClose={onClose} />
 
       <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md">
-        <div className="max-w-[1000px]">
+        <div className="max-w-[1000px] w-full">
           <VideoPlayer />
           <div className="hidden sm:hidden md:block lg:block mt-8 ">
             <h1 className="">Сургалтын тайлбар:</h1>
