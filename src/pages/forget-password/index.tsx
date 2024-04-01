@@ -1,10 +1,9 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import BestDiv from "../components/Layout/BestDiv";
 import Link from "next/link";
 import Image from "next/image";
 import loginCover from "../assets/detailBg.png";
-import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
@@ -14,15 +13,16 @@ interface LoginProps {}
 
 const ForgetPassword: FunctionComponent<LoginProps> = () => {
   const [isloading, setisloading] = useState(false);
-  const notify = (name: string) =>
-    toast.success("Баталгаажуулах 4-н оронтой код илгээсэн :");
-
   const [form, setFormValue] = useState<any>({
     email: "",
   });
 
-  localStorage.setItem("resetEmail", form.email);
-
+  useEffect(() => {
+    // This code now runs only on the client side, avoiding the error
+    if (form.email) {
+      localStorage.setItem("resetEmail", form.email);
+    }
+  }, [form.email]);
   const router = useRouter();
   const handleLogin = (event: any) => {
     event.preventDefault();
