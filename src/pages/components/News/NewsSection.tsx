@@ -19,7 +19,7 @@ const NewsSection = () => {
           ? news.map((list: any, index: any) => {
               return (
                 <Link href={`/news/${list?._id}`} key={index}>
-                  <NewsCard key={index} news={list} />;
+                  <NewsCard key={index} news={list} />
                 </Link>
               );
             })
