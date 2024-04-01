@@ -43,6 +43,7 @@ export default function Home() {
 
   return (
     <>
+      <Messenger />
       {loading ? (
         <Loader />
       ) : (
@@ -50,6 +51,7 @@ export default function Home() {
           <Navbar />
           {/* cover  */}
           <BgCover />
+
           <Messenger />
           <BestDiv>
             <div className="my-12 z-10 w-full">
