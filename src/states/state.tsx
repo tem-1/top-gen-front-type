@@ -42,6 +42,7 @@ interface CourseProviderProps {
 }
 
 export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
+  const [about, setAbout] = useState(null);
   const [course, setCourse] = useState<SingleCourseState[]>([]);
   const [news, setNews] = useState<any[]>([]);
   const [singleNews, setSingleNews] = useState("");
@@ -82,6 +83,17 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       const response = await axiosInstance.get("/news");
       const { data } = response.data;
       setNews(data);
+      setFetched(true);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+  const getAbout = async () => {
+    try {
+      const response = await axiosInstance.get("/about");
+      const { data } = response.data;
+      setAbout(data);
       setFetched(true);
     } catch (error) {
       handleApiError(error);
@@ -194,6 +206,8 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     }
   };
   const contextValue = {
+    getAbout,
+    about,
     course,
     lesson,
     lastViewVideo,
