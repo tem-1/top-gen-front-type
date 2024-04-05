@@ -8,7 +8,8 @@ import axiosInstance from "@/hooks/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
-interface RegisterProps { }
+import SmallSpinner from "../components/miniSpinner";
+interface RegisterProps {}
 const Register: FunctionComponent<RegisterProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
   const notifyError = (error: string) => toast.error(error);
@@ -22,9 +23,12 @@ const Register: FunctionComponent<RegisterProps> = () => {
     name: "",
   });
 
+  const [isloading, setisloading] = useState(false);
+
   const router = useRouter();
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setisloading(true);
     if (form.password !== form.confPass) {
       return notifyError("Нууц үг зөрүүтэй байна");
     }
@@ -39,19 +43,23 @@ const Register: FunctionComponent<RegisterProps> = () => {
     axiosInstance
       .post("/customer", formData)
       .then((response) => {
+        setisloading(false);
         notify(response.data.data.name);
         const { token } = response.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(response.data.data));
         setTimeout(() => {
           router.push("/");
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         console.error(
           "There was a problem with the login request:",
           error.message
         );
+        console.log(error);
+        notifyError(error.response.data.error);
+        setisloading(false);
       });
   };
 
@@ -87,10 +95,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                       <h1 className=" text-xl font-semibold ">Бүртгүүлэх</h1>
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor=""
-                        className=""
-                      >
+                      <label htmlFor="" className="">
                         Овог нэр:
                       </label>
                       <input
@@ -102,13 +107,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.firstname}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor=""
-                        className=""
-                      >
+                      <label htmlFor="" className="">
                         Нэр:
                       </label>
                       <input
@@ -120,13 +121,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.name}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor="exampleFormControlInput2"
-                        className=""
-                      >
+                      <label htmlFor="exampleFormControlInput2" className="">
                         Рд дугаар:
                       </label>
                       <input
@@ -138,14 +135,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.registerNumber}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor="exampleFormControlInput2"
-                      >
-                        Имэйл:
-                      </label>
+                      <label htmlFor="exampleFormControlInput2">Имэйл:</label>
                       <input
                         type="text"
                         className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -155,13 +147,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.email}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor="exampleFormControlInput2"
-                        className=""
-                      >
+                      <label htmlFor="exampleFormControlInput2" className="">
                         Утас:
                       </label>
                       <input
@@ -173,13 +161,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.phone}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
-                      <label
-                        htmlFor="exampleFormControlInput22"
-                        className=""
-                      >
+                      <label htmlFor="exampleFormControlInput22" className="">
                         Нууц үг:
                       </label>
                       <input
@@ -191,7 +175,6 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.password}
                         onChange={handleChange}
                       />
-
                     </div>
                     <div className="relative mb-6  rounded-md">
                       <input
@@ -203,10 +186,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         value={form.confPass}
                         onChange={handleChange}
                       />
-                      <label
-                        htmlFor="exampleFormControlInput22"
-                        className=""
-                      >
+                      <label htmlFor="exampleFormControlInput22" className="">
                         Нууц үг давтах:
                       </label>
                     </div>
@@ -215,7 +195,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         type="submit"
                         className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                       >
-                        Нэвтрэх
+                        {isloading ? <SmallSpinner /> : "Бүртгүүлэх"}
                       </button>
                       <p className="mb-0 mx-auto text-center text-sm font-semibold">
                         <Link
