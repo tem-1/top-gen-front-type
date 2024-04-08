@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { imgUrl } from "@/hooks/img";
-import { Link } from "lucide-react";
+import Link from "next/link"
 const ExampleComponent = ({ comment }: any) => {
   return !comment || comment.length == 0 ? (
     <div>loading</div>
