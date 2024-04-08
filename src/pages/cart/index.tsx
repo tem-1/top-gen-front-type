@@ -31,7 +31,7 @@ const Qr: React.FC<{ cartItems: any[] }> = ({ cartItems }) => {
         if (cartItems && cartItems.length > 0) {
           const c = cartItems.map((el) => ({ _id: el._id }));
           const token = localStorage.getItem("token");
-          token ? null : notifyError("Та эхлээд нэвтэрнүү!!")
+          token ? null : notifyError("Та эхлээд нэвтэрнэ үү!!")
           const invoiceRes = await axios.post(
             "https://topgeniuses.tanuweb.cloud/api/v1/invoice",
             {

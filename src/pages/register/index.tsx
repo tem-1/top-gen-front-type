@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import SmallSpinner from "../components/miniSpinner";
-interface RegisterProps {}
+interface RegisterProps { }
 const Register: FunctionComponent<RegisterProps> = () => {
   const notify = (name: string) => toast.success("Тавтай морил :" + name);
   const notifyError = (error: string) => toast.error(error);
@@ -96,7 +96,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                     </div>
                     <div className="relative mb-6  rounded-md">
                       <label htmlFor="" className="">
-                        Овог нэр:
+                        Овог:
                       </label>
                       <input
                         type="text"
@@ -122,20 +122,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="relative mb-6  rounded-md">
-                      <label htmlFor="exampleFormControlInput2" className="">
-                        Рд дугаар:
-                      </label>
-                      <input
-                        type="text"
-                        className=" peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                        id="exampleFormControlInput2"
-                        placeholder=""
-                        name="registerNumber"
-                        value={form.registerNumber}
-                        onChange={handleChange}
-                      />
-                    </div>
+
                     <div className="relative mb-6  rounded-md">
                       <label htmlFor="exampleFormControlInput2">Имэйл:</label>
                       <input

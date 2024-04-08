@@ -17,12 +17,12 @@ const Navlinks = () => {
     {
       name: "Үнэгүй хичээл",
     },
-    {
-      name: "Сэтгэгдлүүд",
-    },
     // {
-    //   name: "Мэдээ",
-    //   link: "/news",
+    //   name: "Сэтгэгдлүүд",
+    // },
+    // {
+    //   name: "",
+    //   link: "/cart",
     // },
   ];
 
@@ -30,7 +30,7 @@ const Navlinks = () => {
     <>
       {links.map((link, i) => (
         <div key={i}>
-          <div className="px-3 text-left md:cursor-pointer group">
+          <div className="px-2 text-left md:cursor-pointer group font-bold">
             <Link href={`${link.link}`}>
               <h1
                 className="py-4 flex justify-between text-sm"
@@ -44,9 +44,8 @@ const Navlinks = () => {
           </div>
           {/* mobile nav */}
           <div
-            className={`${
-              heading === link.name ? " md:hidden lg:hidden" : "hidden"
-            }`}
+            className={`${heading === link.name ? " md:hidden lg:hidden" : "hidden"
+              }`}
           ></div>
         </div>
       ))}

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "@/hooks/axios";
 
-interface ProfilepageProps {}
+interface ProfilepageProps { }
 
 const Profilepage: FunctionComponent<ProfilepageProps> = () => {
   const [userInfo, setUserInfo] = useState<any>(null);

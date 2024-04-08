@@ -21,9 +21,7 @@ function Footer() {
         <div className="container mx-auto py-12">
           <div className="xl:flex lg:flex md:flex pt-6">
             <div className="">
-              <div className="flex items-center mb-6 xl:mb-0 lg:mb-0 pt-16">
-                <Image width={300} height={300} src={bg} alt="footer  photo" />
-              </div>
+
             </div>
             <div className="w-11/12 xl:w-1/6 lg:w-2/5 mx-auto lg:mx-0 xl:mx-0 pt-3 xl:flex xl:justify-end sm:pl-0 ">
               <ul className="mr-0 sm:mr-0 md:mr-0 lg:mr-12">
@@ -69,7 +67,7 @@ function Footer() {
             </div>
             <div className="w-11/12 xl:w-1/6 lg:w-2/5 mx-auto lg:mx-0 xl:mx-0 pt-3 xl:flex xl:justify-end pl-3 sm:pl-0">
               <ul>
-                <li className="text-gray-200  text-md mb-6">Утас:</li>
+                <li className="text-gray-200  text-md mb-6">Холбоо барих:</li>
                 <li className="text-base text-gray-200 hover:text-gray-700 mb-5">
                   <Link href="tel:+994048078"> 99100780</Link>{" "}
                   {/* Replace <a> with <Link> */}
@@ -78,13 +76,17 @@ function Footer() {
             </div>
             <div className="w-11/12 xl:w-1/6 lg:w-2/5 mx-auto lg:mx-0 xl:mx-0 pt-3 xl:flex xl:justify-end pl-3 sm:pl-0">
               <ul>
-                <li className="text-gray-200  text-md mb-6">Social</li>
+                <li className="text-gray-200  text-md mb-6">Сошиал хаяг:</li>
                 <li>
                   <div className=" ">
                     <div className="flex justify-start sm:justify-start xl:justify-end space-x-6 pr-2 xl:pr-0 lg:pr-0 md:pr-0 sm:pr-0">
                       <div className="flex gap-4">
-                        <CiFacebook className="w-8 h-8 text-gray-300" />
-                        <CiInstagram className="w-8 h-8 text-gray-300" />
+                        <Link href={"https://www.facebook.com/topgeniusbolowsroliintuw"}>
+                          <CiFacebook className="w-8 h-8 text-gray-300" />
+                        </Link>
+                        <Link href={"https://www.instagram.com/top_genius__/"}>
+                          <CiInstagram className="w-8 h-8 text-gray-300" />
+                        </Link>
                       </div>
                     </div>
                   </div>

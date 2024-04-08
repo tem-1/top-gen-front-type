@@ -112,9 +112,9 @@ const Detail: FunctionComponent<DetailProps> = () => {
     }, [videoSrc]);
 
     return (
-      <div>
+      <div className="">
         {loading ? (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full  flex items-center justify-center h-[500px]">
             <div
               className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
               role="status"
@@ -159,22 +159,22 @@ const Detail: FunctionComponent<DetailProps> = () => {
       </div>
       <Modal isOpen={modalOpen} id={testId} onClose={onClose} />
 
-      <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md">
+      <div className="container border mt-12 h-auto flex flex-col md:flex-row bg-white  p-4 rounded-md ">
         <div className="max-w-[1000px] w-full">
           <VideoPlayer />
-          <div className="hidden sm:hidden md:block lg:block mt-8 ">
-            <h1 className="">Сургалтын тайлбар:</h1>
+          <div className="hidden sm:hidden md:block lg:block mt-8  m-12 ">
+            <h1 className="font-semibold  text-blue-400">Сургалтын тайлбар:</h1>
             <p className="text-gray-400 text-sm m-4 text-justify">
               {singleCourse.description}
             </p>
-            <p>Сэтгэгдэл бичих :</p>
+            <p className=" mt-2">Сэтгэгдэл бичих :</p>
             <CommentButton />
           </div>
         </div>
         <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
-          <div className="mb-2 mt-4  flex items-center justify-center">
+          <div className="mt-4  flex items-center justify-center gap-3 mb-4">
             <FcVideoCall />
-            <span className=" ">Хичээлүүд</span>
+            <span className="  font-semibold text-xl">Хичээлүүд  </span>
           </div>
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto  ">
             <div className="lesson-list rounded-xl my-4 flex  flex-col items-center
@@ -182,7 +182,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
               {singleCourse?.lessons?.map((item: any, index: number) => (
                 <div className="items-center" key={index}>
                   <div
-                    className={`w-[300px] lesson-item pl-2 p-4 w-full my-1 rounded-md cursor-pointer border border-blue-400 ${clickedButtonIndex === index
+                    className={`w-[300px] lesson-item pl-2 p-4 my-1 rounded-md cursor-pointer border border-blue-400 ${clickedButtonIndex === index
                       ? "bg-slate-600"
                       : " bg-blue-500 "
                       }`}
@@ -226,7 +226,10 @@ const Detail: FunctionComponent<DetailProps> = () => {
           {/* <div className="m-2">
             <h1>Төстэй сургалтууд</h1>
           </div> */}
+
         </div>
+      </div>
+      <div className=" my-[300px] ">
       </div>
     </Layout>
   );

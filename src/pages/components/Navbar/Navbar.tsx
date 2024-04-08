@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/topgenLogo.png";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
-import { ShoppingCart } from "lucide-react";
 import LoginButton from "../LoginButton";
 import { MdMenu } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
@@ -28,21 +27,23 @@ export default function Navbar() {
   const { additional } = useCourseContext();
   return (
     <nav className="bg-white  flex justify-center">
+      <div className=" mr-12 mt-3">
+        <Link className="flex" href={"/"}>
+          <Image
+            src={`${imgUrl}/${additional?.logo}`}
+            width={50}
+            height={38}
+            alt="logo"
+            className="md:cursor-pointer hidden sm:hidden md:block lg:block mr-4"
+          />
+          <div className=" text-sm  font-semibold flex  h-full items-center hidden  md:block lg:block xl:block">
+            TOP Genius <br /> Боловсролын төв
+          </div>
+        </Link>
+      </div>
       <div className=" max-w-full">
         <div className=" w-full flex items-center ">
           <div className="w-full flex justify-between pl-12 z-50 p-5 md:w-auto">
-            <Link className="flex" href={"/"}>
-              <Image
-                src={`${imgUrl}/${additional?.logo}`}
-                width={50}
-                height={38}
-                alt="logo"
-                className="md:cursor-pointer hidden sm:hidden md:block lg:block mr-4"
-              />
-              <div className=" text-sm flex  h-full items-center hidden  md:block lg:block xl:block">
-                TOP Genius <br /> Боловсролын төв
-              </div>
-            </Link>
             <div
               className="text-3xl md:hidden block"
               onClick={() => setToggle(!toggle)}
@@ -52,12 +53,15 @@ export default function Navbar() {
           </div>
           <ul className="md:flex hidden items-center gap-8">
             <li>
-              <Link href="/" className="py-7 px-3 inline-block text-sm">
+              <Link href="/" className="py-7 px-3 inline-block text-sm  font-bold">
                 Нүүр
               </Link>
             </li>
             <Navlinks />
           </ul>
+          <Link href={"/cart"} className=" font-bold text-sm">
+            <p className="ml-8 -mr-[5px]">Миний сагс</p>
+          </Link>
           <Cart />
 
           <div className="md:block hidden">
@@ -94,9 +98,8 @@ export default function Navbar() {
           </div>
           {/* mobile menu */}
           <ul
-            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${
-              toggle ? "left-0" : "-left-[100%]"
-            }`}
+            className={`z-20 md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4 duration-500 ${toggle ? "left-0" : "-left-[100%]"
+              }`}
           >
             <li>
               <Link href="/" className="py-7 px-3  inline-block">

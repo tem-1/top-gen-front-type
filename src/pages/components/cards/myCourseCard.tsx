@@ -28,7 +28,7 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const notifySuccess = (message: any) =>
-    toast.success("Сагсанд нэмэглээ " + message);
+    toast.success("Сагсанд нэмэгдлээ " + message);
   const router = useRouter();
   console.log("router pathname", router.pathname);
   const { increaseCartQuantity } = useShoppingCart();
