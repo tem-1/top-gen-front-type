@@ -7,21 +7,26 @@ import { useRouter } from "next/router";
 import CommentButton from "../components/cards/CommentButton";
 import BgCover from "../components/Cover";
 import { ToastContainer, toast } from "react-toastify";
-import ExampleComponent from "../components/CommentList ";
 import axiosInstance from "@/hooks/axios";
 
-interface DetailProps { }
+interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
-  const { getLesson, getSingleCourse, singleCourse, getCourseComments, courseComment } = useCourseContext();
+  const {
+    getLesson,
+    getSingleCourse,
+    singleCourse,
+    getCourseComments,
+    courseComment,
+  } = useCourseContext();
   const [comments, setComments] = useState([]);
   const [showFull, setShowFull] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
     getCourseComments(id);
-  }, [id])
-  console.log("-----------------", courseComment)
+  }, [id]);
+  console.log("-----------------", courseComment);
   useEffect(() => {
     if (id && typeof id === "string" && id.trim() !== "") {
       getSingleCourse(id);
@@ -67,7 +72,6 @@ const Detail: FunctionComponent<DetailProps> = () => {
               )}
             </p>
 
-
             <p>Сэтгэгдэл бичих :</p>
             <CommentButton />
           </div>
@@ -75,16 +79,10 @@ const Detail: FunctionComponent<DetailProps> = () => {
             Сэтгэгдлүүд :
           </h1>
 
-          {
-            courseComment?.map((comment: any) => {
-              return (
-
-                <ExampleComponent key={comment._id} comment={comment} />
-              )
-            })
-          }
+          {/* {courseComment?.map((comment: any) => {
+            return <ExampleComponent key={comment._id} comment={comment} />;
+          })} */}
         </div>
-
       </div>
 
       <div className=" h-[200px] "></div>
