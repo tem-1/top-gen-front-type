@@ -60,7 +60,7 @@ export default function Navbar() {
             <Navlinks />
           </ul>
           <Link href={"/cart"} className=" font-bold text-sm">
-            <p className="ml-8 -mr-[5px]">Миний сагс</p>
+            <p className="ml-8 -mr-[5px]   hidden md:block lg:block ">Миний сагс</p>
           </Link>
           <Cart />
 
@@ -79,7 +79,7 @@ export default function Navbar() {
                     width={20}
                     height={5}
                   />{" "}
-                  Миний сургалт{" "}
+                  Худалдаж авсан сургалт{" "}
                 </Link>
               </div>
             ) : (

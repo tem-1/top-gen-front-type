@@ -4,9 +4,12 @@ import detailBg from "../assets/detailBg.png";
 import Image from "next/image";
 import { useCourseContext } from "@/states/state";
 import { imgUrl } from "@/hooks/img";
+import DOMPurify from 'dompurify';
+
 
 const About = () => {
   const { about, getAbout } = useCourseContext();
+  const sanitizedDescription = about?.description ? DOMPurify.sanitize(about.description) : '';
   console.log(about);
   useEffect(() => {
     getAbout();
@@ -19,17 +22,15 @@ const About = () => {
             <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">
               Бидний тухай
             </h1>
-            <p className="font-normal text-base leading-6 text-gray-600 ">
-              {about?.description}
-            </p>
+            <p className="font-normal text-base leading-6 text-gray-600" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>;
           </div>
           <div className="w-full lg:w-8/12 ">
             <Image
-              className="w-full h-full mt-[80px]"
+              className="mt-[50px] object-cover rounded-sm"
               src={`${imgUrl}/${about?.photo}`}
               alt="A group of People"
-              width={800}
-              height={600}
+              width={700}
+              height={400}
             />
           </div>
         </div>

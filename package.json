@@ -32,12 +32,14 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "dompurify": "^3.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "lucide-react": "^0.365.0",

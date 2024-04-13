@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import axiosInstance from "@/hooks/axios";
 import { handleApiError } from "@/error/error";
 
-// Define types/interfaces
 interface EmployeeType {
   _id: string;
   firstname: string;
@@ -34,7 +33,6 @@ interface SingleCourseState {
   createdAt?: string;
 }
 
-// Define context and provider
 export const CourseContext = createContext<any>(null);
 
 interface CourseProviderProps {

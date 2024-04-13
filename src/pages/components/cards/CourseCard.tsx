@@ -96,10 +96,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         ) : (
           <div>
             {isInMyLessons ? (
-              <div className="bg-green-300 p-2 rounded-md">
-                {" "}
-                Худалдаж авсан{" "}
-              </div>
+              <Link className="flex" href={'/myCourses/' + course._id}>
+                <div className="bg-sky-300 p-2 rounded-md">
+                  Сургалт үзэх
+                </div>
+                <p className=" text-slate-400 underline text-xs flex h-full  justify-center p-2 ml-1">Та худалдаж авсан байна</p>
+              </Link>
             ) : (
               <span> Үнэ : {course.price}₮</span>
             )}
