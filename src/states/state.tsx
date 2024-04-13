@@ -20,6 +20,7 @@ interface Lesson {
   title: string;
   course: string;
   video: string;
+  freeLesson: string;
 }
 
 interface SingleCourseState {
@@ -52,12 +53,14 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
   const [lastViewVideo, setVideo] = useState([]);
   const [additional, setAdditional] = useState();
   const [courseComment, setCourseCmment] = useState([]);
+  const [lessonList, setLessonList] = useState([]);
   const token: any =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
     if (!fetched) {
       getCourse();
+      getLessonList();
       getAdditional();
       if (token) {
         getMyLesson();
@@ -161,6 +164,16 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
       throw error;
     }
   };
+  const getLessonList = async () => {
+    try {
+      const response = await axiosInstance.get(`/lesson`);
+      setLessonList(response.data.pure);
+      setFetched(true);
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
 
   const getMyLesson = async () => {
     try {
@@ -229,6 +242,8 @@ export const CourseProvider: React.FC<CourseProviderProps> = ({ children }) => {
     getAdditional,
     getCourseComments,
     courseComment,
+    getLessonList,
+    lessonList,
   };
 
   return (

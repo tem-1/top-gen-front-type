@@ -97,7 +97,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           <div>
             {isInMyLessons ? (
               <Link className="flex" href={'/myCourses/' + course._id}>
-                <div className="bg-sky-300 p-2 rounded-md">
+                <div className="bg-sky-300 p-2 rounded-md text-sm  font-semibold text-white">
                   Сургалт үзэх
                 </div>
                 <p className=" text-slate-400 underline text-xs flex h-full  justify-center p-2 ml-1">Та худалдаж авсан байна</p>

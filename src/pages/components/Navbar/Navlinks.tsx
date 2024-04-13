@@ -15,7 +15,7 @@ const Navlinks = () => {
       link: "/about",
     },
     {
-      name: "Үнэгүй хичээл",
+      name: "Үнэгүй хичээл", link: "/free",
     },
     // {
     //   name: "Сэтгэгдлүүд",
