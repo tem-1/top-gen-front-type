@@ -18,9 +18,6 @@ function Footer() {
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <div className="text-teal-600">
-              <Image className=" hidden md:block lg:block" src={`${imgUrl}/${additional?.logo}`} alt={""} width={200} height={200} />
-            </div>
             <p className="mt-4 max-w-xs text-white">
               Сошиал хаяг:
             </p>
