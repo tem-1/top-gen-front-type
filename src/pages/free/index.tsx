@@ -20,10 +20,9 @@ const FreeLessonPage: FunctionComponent<FreeLessonPageProps> = () => {
                     {activeLessons.map((lesson: any, i: number) => (
                         <div key={lesson._id} className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
                             <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                                <CldVideoPlayer
-                                    id={`${Math.random().toString(36).substring(7)}`}
+                                <video
                                     width="800"
-                                    height="200"
+                                    height="400"
                                     controls={true}
                                     src={`${imgUrl}/${lesson?.video}`}
                                 />
