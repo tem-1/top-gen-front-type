@@ -45,7 +45,7 @@
     "lucide-react": "^0.365.0",
     "postcss": "^8",
     "react-html5video": "^2.5.1",
-    "react-player": "^2.14.1",
+    "react-player": "^2.16.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "video-react": "^0.16.0"

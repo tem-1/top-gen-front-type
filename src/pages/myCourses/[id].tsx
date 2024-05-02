@@ -9,6 +9,7 @@ import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
 import CommentButton from "../components/cards/CommentButton";
 import axiosInstance from "@/hooks/axios";
+import ReactPlayer from "react-player"
 import BgCover from "../components/Cover";
 import Modal from "../components/Modal/Modal";
 interface DetailProps { }
@@ -125,17 +126,22 @@ const Detail: FunctionComponent<DetailProps> = () => {
             </div>
           </div>
         ) : videoSrc ? (
-          <CldVideoPlayer
-            id={`${Math.random().toString(36).substring(7)}`}
-            width="800"
-            height="200"
-            controls={true}
-            src={`${imgUrl}/${videoSrc}`}
-          />
+          // <CldVideoPlayer
+          //   id={`${Math.random().toString(36).substring(7)}`}
+          //   width="800"
+          //   height="200"
+          //   controls={true}
+          //   src={`${imgUrl}/${videoSrc}`}
+          // />
+          <video
+              width="1000"
+              height="200"
+              controls={true}
+              src={`${imgUrl}/${singleCourse.lessons?.[0]?.video}`}
+            />
         ) : (
           <div className="text-red-500">
-            <CldVideoPlayer
-              id={`${Math.random().toString(36).substring(7)}`}
+            <video
               width="800"
               height="200"
               controls={true}
