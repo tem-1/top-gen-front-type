@@ -21,7 +21,7 @@ const NewsCard = ({ news }: NewsCardProp) => {
       <img
         src={`https://topgeniuses.tanuweb.cloud/uploads/${news?.photo}`}
         alt=""
-        className="w-full h-[50%] object-cover rounded-bl-2xl rounded-tr-2xl border-b-2 group-hover:scale-110 transition duration-500 cursor-pointer
+        className="w-full h-[50%] object-cover p-2 rounded-bl-2xl rounded-tr-2xl border-b-2 group-hover:scale-110 transition duration-500 cursor-pointer 
         "
       />
       <div className="flex flex-col w-full px-10 py-4 gap-2">
