@@ -57,8 +57,13 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
 
     notifySuccess(course.coursname);
   };
+  console.log(course)
   return (
     <div className="relative h-auto p-4 flex flex-col bg-white rounded-lg  w-auto">
+      {
+        course.sale > 0 ?
+          <div className="absolute right-5 top-5 z-20 bg-green-300 rounded-lg px-4 text-white font-semibold"><span>{course.sale}₮ OFF</span></div> : null
+      }
       <div className="w-full">
         <Link href={`/coursedetail/${course._id}`}>
           <AspectRatio ratio={16 / 16}>
