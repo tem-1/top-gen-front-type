@@ -11,18 +11,18 @@ const NewsSection = () => {
   }, []);
   return (
     <div className="flex flex-col w-full px-10 items-center">
-      <span className="mb-8 text-2xl font-semibold text-[#38B6FF]">
+      <span className="mb-8 text-3xl font-bold  text-[#38B6FF]">
         Шинэ мэдээ{" "}
       </span>
       <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
         {news
           ? news.map((list: any, index: any) => {
-              return (
-                <Link href={`/news/${list?._id}`} key={index}>
-                  <NewsCard key={index} news={list} />
-                </Link>
-              );
-            })
+            return (
+              <Link href={`/news/${list?._id}`} key={index}>
+                <NewsCard key={index} news={list} />
+              </Link>
+            );
+          })
           : null}
       </div>
     </div>
