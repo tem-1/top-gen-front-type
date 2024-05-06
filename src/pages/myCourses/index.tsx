@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { useCourseContext } from "@/states/state";
 import MyCourseList from "../components/cards/myCourseCard";
 import { IoReloadSharp } from "react-icons/io5";
-interface MyCoursesProps {}
+interface MyCoursesProps { }
 
 const MyCourses: FunctionComponent<MyCoursesProps> = () => {
   const { myLesson, getMyLesson } = useCourseContext();

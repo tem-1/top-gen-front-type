@@ -69,7 +69,7 @@ export default function Home() {
             </div> */}
 
             <img
-              src="/cover.jpg"
+              src="/covertop.png"
               alt=""
               className="w-full md:h-[300px] h-[200px] object-cover mb-8 bg-transparent"
             />

@@ -101,6 +101,7 @@ export default function Home() {
                             ? list?.coursname?.slice(0, 40) + "..."
                             : list?.coursname}
                         </span>
+                        <span className="coursePrice ">{list?.price} ₮</span>
                         <div className="w-full flex h-full items-end justify-end">
                           <div className="flex gap-4 items-center md:items-end">
                             <button
@@ -112,14 +113,14 @@ export default function Home() {
                               Сагслах
                             </button>
                             <div
-                              className="bg-[#AF0740] text-white p-1 md:hidden block rounded-lg"
+                              className="bg-[#AF0740] text-white p-1 md:hidden block rounded-lg "
                               onClick={() => {
                                 increaseCartQuantity(list);
                               }}
                             >
                               <ShoppingBasketIcon />
                             </div>
-                            <span>{list?.price} ₮</span>
+
                           </div>
                         </div>
                       </div>
@@ -150,11 +151,10 @@ export default function Home() {
                     {Array.from({ length: totalPages }, (_, index) => (
                       <div
                         key={index}
-                        className={`px-4 py-2  cursor-pointer rounded hover:bg-gray-300 ${
-                          currentPage === index + 1
-                            ? "bg-[#AF0740] text-white"
-                            : "bg-white text-black"
-                        } border-gray-300`}
+                        className={`px-4 py-2  cursor-pointer rounded hover:bg-gray-300 ${currentPage === index + 1
+                          ? "bg-[#AF0740] text-white"
+                          : "bg-white text-black"
+                          } border-gray-300`}
                         onClick={() => paginate(index + 1)}
                       >
                         {index + 1}

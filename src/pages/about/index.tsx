@@ -22,7 +22,7 @@ const About = () => {
             <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">
               Бидний тухай
             </h1>
-            <p className="font-normal text-base leading-6 text-gray-600" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>;
+            <p className="font-normal text-base leading-6 text-gray-600" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
           </div>
           <div className="w-full lg:w-8/12 ">
             <Image

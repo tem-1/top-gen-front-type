@@ -121,7 +121,7 @@ export default function Navbar() {
                     width={20}
                     height={10}
                   />
-                  Миний сургалт
+                  Худалдаж авсан сургалт
                 </Link>
               </div>
             ) : (
