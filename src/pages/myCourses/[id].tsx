@@ -9,10 +9,10 @@ import { FcQuestions } from "react-icons/fc";
 import { imgUrl } from "@/hooks/img";
 import CommentButton from "../components/cards/CommentButton";
 import axiosInstance from "@/hooks/axios";
-import ReactPlayer from "react-player"
+import ReactPlayer from "react-player";
 import BgCover from "../components/Cover";
 import Modal from "../components/Modal/Modal";
-interface DetailProps { }
+interface DetailProps {}
 
 const Detail: FunctionComponent<DetailProps> = () => {
   const { getLesson, getSingleCourse, singleCourse, lastViewVideo, myLesson } =
@@ -67,8 +67,8 @@ const Detail: FunctionComponent<DetailProps> = () => {
     }
   };
   const [bgColor, setBgColor] = useState("");
-  const handleLastVideoSrc = async () => { };
-  const handleChangeColor = (bgColor: any) => { };
+  const handleLastVideoSrc = async () => {};
+  const handleChangeColor = (bgColor: any) => {};
   useEffect(() => {
     if (singleCourse && singleCourse.lessons) {
       const fetchDurations = async () => {
@@ -134,11 +134,11 @@ const Detail: FunctionComponent<DetailProps> = () => {
           //   src={`${imgUrl}/${videoSrc}`}
           // />
           <video
-              width="1000"
-              height="200"
-              controls={true}
-              src={`${imgUrl}/${singleCourse.lessons?.[0]?.video}`}
-            />
+            width="1000"
+            height="200"
+            controls={true}
+            src={`${imgUrl}/${videoSrc}`}
+          />
         ) : (
           <div className="text-red-500">
             <video
@@ -180,18 +180,21 @@ const Detail: FunctionComponent<DetailProps> = () => {
         <div className="flex flex-col mt-0 sm:mt-1 md:mt-4 lg:mt-12">
           <div className="mt-4  flex items-center justify-center gap-3 mb-4">
             <FcVideoCall />
-            <span className="  font-semibold text-xl">Хичээлүүд  </span>
+            <span className="  font-semibold text-xl">Хичээлүүд </span>
           </div>
           <div className="border p-4 rounded-lg ml-0 md:ml-12 h-[600px] overflow-y-auto  ">
-            <div className="lesson-list rounded-xl my-4 flex  flex-col items-center
-             ">
+            <div
+              className="lesson-list rounded-xl my-4 flex  flex-col items-center
+             "
+            >
               {singleCourse?.lessons?.map((item: any, index: number) => (
                 <div className="items-center" key={index}>
                   <div
-                    className={`w-[300px] lesson-item pl-2 p-4 my-1 rounded-md cursor-pointer border border-blue-400 ${clickedButtonIndex === index
-                      ? "bg-slate-600"
-                      : " bg-blue-500 "
-                      }`}
+                    className={`w-[300px] lesson-item pl-2 p-4 my-1 rounded-md cursor-pointer border border-blue-400 ${
+                      clickedButtonIndex === index
+                        ? "bg-slate-600"
+                        : " bg-blue-500 "
+                    }`}
                   >
                     <span className="text-white">
                       {index + 1} {item.title}
@@ -204,8 +207,9 @@ const Detail: FunctionComponent<DetailProps> = () => {
                         handleChangeName(item.title);
                         handleChangeColor("bg-blue");
                       }}
-                      className={`my-1 cursor-pointer hover:underline rounded-sm p-1 w-full h-full mr-1 flex items-start justify-center text-blue-400 border border-blue-400 ${clickedButtonIndex === index ? "bg-blue-600" : ""
-                        }`}
+                      className={`my-1 cursor-pointer hover:underline rounded-sm p-1 w-full h-full mr-1 flex items-start justify-center text-blue-400 border border-blue-400 ${
+                        clickedButtonIndex === index ? "bg-blue-600" : ""
+                      }`}
                     >
                       <span className="mr-2">
                         <FcVideoCall className="mt-1" />
@@ -232,11 +236,9 @@ const Detail: FunctionComponent<DetailProps> = () => {
           {/* <div className="m-2">
             <h1>Төстэй сургалтууд</h1>
           </div> */}
-
         </div>
       </div>
-      <div className=" my-[300px] ">
-      </div>
+      <div className=" my-[300px] "></div>
     </Layout>
   );
 };
