@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import SearchBar from "./components/Searchbar/SearchBar";
 import CourseList from "./components/cards/CourseCard";
@@ -10,7 +8,6 @@ import { useCourseContext } from "@/states/state";
 import Footer from "./components/Footer";
 import BgCover from "./components/Cover";
 import Messenger from "./components/Messenger/Messenger";
-import NewsCard from "./components/News/NewsCard";
 import NewsSection from "./components/News/NewsSection";
 export default function Home() {
   const { course } = useCourseContext();
@@ -20,7 +17,6 @@ export default function Home() {
     setFilteredData(course);
   }, [course]);
 
-  //search code
   const [searchParams, setSearchParams] = useState("");
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
@@ -34,7 +30,6 @@ export default function Home() {
       setFilteredData(filter);
     }
   };
-  // end duusna
   const [loading, setLoading] = useState(true);
   const delay = setTimeout(() => {
     setLoading(false);
@@ -54,7 +49,9 @@ export default function Home() {
           <BestDiv>
             <div className="my-12 z-10 w-full">
               <SearchBar onSearch={onSearch} />
-              <h1 className="my-12 p-6 text-3xl font-bold text-sky-400">Бүх сургалт</h1>
+              <h1 className="my-12 p-6 text-3xl font-bold text-sky-400">
+                Бүх сургалт
+              </h1>
               <CourseList courses={filteredData} />
             </div>
 

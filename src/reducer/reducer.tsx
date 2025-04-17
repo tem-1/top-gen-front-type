@@ -1,7 +1,6 @@
 import { createStore } from "redux";
 import { AnyAction } from "redux";
 
-// Define the CartItem interface
 interface CartItem {
   _id: string;
   name: string;
@@ -13,25 +12,21 @@ interface CartItem {
   employee: any;
 }
 
-// Define the state interface
 interface AppState {
   cart: CartItem[];
 }
 
-// Define the action interface
 interface AddToCartAction extends AnyAction {
   type: "ADD_TO_CART";
   payload: CartItem;
 }
 
-// Combine the action and state interfaces
 type RootState = AppState & {
   [key: string]: any;
 };
 
 type AppAction = AddToCartAction | AnyAction;
 
-// Define the reducer
 const reducer = (
   state: RootState = initialState,
   action: AppAction
