@@ -84,7 +84,7 @@ export default function Home() {
                       className="w-full h-[200px] bg-white rounded-xl flex p-4"
                     >
                       <img
-                        src={`https://http://topgenius.tanusoft.mn/uploads/${list?.photo}`}
+                        src={`https://https://topgenius.tanusoft.mn/uploads/${list?.photo}`}
                         alt=""
                         className="h-full w-[200px] object-cover cursor-pointer rounded"
                       />

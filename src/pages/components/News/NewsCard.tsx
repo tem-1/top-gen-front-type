@@ -19,7 +19,7 @@ const NewsCard = ({ news }: NewsCardProp) => {
   return (
     <div className="w-full h-[400px] border rounded-tr-2xl flex flex-col shadow-2xl group  overflow-hidden">
       <img
-        src={`https://http://topgenius.tanusoft.mn/uploads/${news?.photo}`}
+        src={`https://https://topgenius.tanusoft.mn/uploads/${news?.photo}`}
         alt=""
         className="w-full h-[50%] object-cover p-2 rounded-bl-2xl rounded-tr-2xl border-b-2 group-hover:scale-110 transition duration-500 cursor-pointer 
         "

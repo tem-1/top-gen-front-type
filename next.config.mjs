@@ -4,7 +4,7 @@ const nextConfig = {
     domains: [
       "static-cse.canva.com",
       "localhost",
-      "http://topgenius.tanusoft.mn",
+      "https://topgenius.tanusoft.mn",
       "i.ibb.co",
       "s3.qpay.mn",
       "qpay.mn",
