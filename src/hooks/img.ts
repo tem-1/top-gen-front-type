@@ -1,5 +1,5 @@
 export const utga: boolean = true;
 export const imgUrl =
   utga === true
-    ? "https://topgeniuses.tanuweb.cloud/uploads"
+    ? "http://topgenius.tanusoft.mn/uploads"
     : "http://localhost:9090//uploads";
