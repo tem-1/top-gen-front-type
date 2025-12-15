@@ -19,7 +19,7 @@ export default async function handler(
 
   try {
     const response = await axios.post(
-      "https://topgeniuses.tanuweb.cloud/api/v1/forgetPassword",
+      "https://http://topgenius.tanusoft.mn/api/v1/forgetPassword",
       { email }
     );
     const opt = response.data.data.opt;

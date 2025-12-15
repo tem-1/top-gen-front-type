@@ -84,7 +84,7 @@ export default function Home() {
                       className="w-full h-[200px] bg-white rounded-xl flex p-4"
                     >
                       <img
-                        src={`https://topgeniuses.tanuweb.cloud/uploads/${list?.photo}`}
+                        src={`https://http://topgenius.tanusoft.mn/uploads/${list?.photo}`}
                         alt=""
                         className="h-full w-[200px] object-cover cursor-pointer rounded"
                       />
@@ -120,7 +120,6 @@ export default function Home() {
                             >
                               <ShoppingBasketIcon />
                             </div>
-
                           </div>
                         </div>
                       </div>
@@ -151,10 +150,11 @@ export default function Home() {
                     {Array.from({ length: totalPages }, (_, index) => (
                       <div
                         key={index}
-                        className={`px-4 py-2  cursor-pointer rounded hover:bg-gray-300 ${currentPage === index + 1
-                          ? "bg-[#AF0740] text-white"
-                          : "bg-white text-black"
-                          } border-gray-300`}
+                        className={`px-4 py-2  cursor-pointer rounded hover:bg-gray-300 ${
+                          currentPage === index + 1
+                            ? "bg-[#AF0740] text-white"
+                            : "bg-white text-black"
+                        } border-gray-300`}
                         onClick={() => paginate(index + 1)}
                       >
                         {index + 1}

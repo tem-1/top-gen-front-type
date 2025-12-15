@@ -15,7 +15,7 @@ const SingleNews = () => {
       <div className="w-full container flex flex-col items-center px-4 md:px-48 bg-white">
         <span className="uppercase my-4 font-semibold">{singleNews?.name}</span>
         <img
-          src={`https://topgeniuses.tanuweb.cloud/uploads/${singleNews?.photo}`}
+          src={`https://http://topgenius.tanusoft.mn/uploads/${singleNews?.photo}`}
           alt=""
           className="w-full md:h-[500px] h-[200px] object-cover pt-10 rounded-lg"
         />
