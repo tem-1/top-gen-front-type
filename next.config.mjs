@@ -4,12 +4,12 @@ const nextConfig = {
     domains: [
       "static-cse.canva.com",
       "localhost",
-      "https://topgenius.tanusoft.mn",
+      "topgenius.tanusoft.mn", // ✅ protocol байхгүй
       "i.ibb.co",
       "s3.qpay.mn",
       "qpay.mn",
-      "https://www.facebook.com",
-      "https://www.instagram.com",
+      "www.facebook.com", // ✅
+      "www.instagram.com", // ✅
     ],
   },
 };
