@@ -21,7 +21,7 @@ const Detail: FunctionComponent<DetailProps> = () => {
   // const [test, setTest] = useState([]);
   // useEffect(() => {
   //   axiosInstance
-  //     .get(`https://http://topgenius.tanusoft.mn/api/v1/quiz/${singleCourse?._id}`)
+  //     .get(`https://https://topgenius.tanusoft.mn/api/v1/quiz/${singleCourse?._id}`)
   //     .then((res) => setTest(res.data.data));
   // }, [singleCourse]);
   const [videoSrc, setVideoSrc] = useState<string>();

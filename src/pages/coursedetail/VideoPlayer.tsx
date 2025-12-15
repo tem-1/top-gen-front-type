@@ -19,7 +19,7 @@ const VideoPlayer: FunctionComponent<VideoPlayerProps> = ({ src }) => {
         id={`${playerId}`}
         width="800"
         height="800"
-        src={`https://http://topgenius.tanusoft.mn/uploads/1708753814150-videoplayback.mp4`}
+        src={`https://https://topgenius.tanusoft.mn/uploads/1708753814150-videoplayback.mp4`}
       />
     </div>
   );

@@ -15,7 +15,7 @@ const Modal = ({ isOpen, id, onClose }: ModalOpen) => {
   useEffect(() => {
     if (isOpen) {
       axiosInstance
-        .get(`https://http://topgenius.tanusoft.mn/api/v1/quiz/${id}`)
+        .get(`https://https://topgenius.tanusoft.mn/api/v1/quiz/${id}`)
         .then((res) => setTest(res.data.data))
         .catch((error) => console.error("Error fetching quiz data:", error));
     }
