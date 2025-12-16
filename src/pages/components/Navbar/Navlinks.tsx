@@ -14,9 +14,7 @@ const Navlinks = () => {
       name: "Бидний тухай",
       link: "/about",
     },
-    {
-      name: "Үнэгүй хичээл", link: "/free",
-    },
+
     // {
     //   name: "Сэтгэгдлүүд",
     // },
@@ -44,8 +42,9 @@ const Navlinks = () => {
           </div>
           {/* mobile nav */}
           <div
-            className={`${heading === link.name ? " md:hidden lg:hidden" : "hidden"
-              }`}
+            className={`${
+              heading === link.name ? " md:hidden lg:hidden" : "hidden"
+            }`}
           ></div>
         </div>
       ))}
